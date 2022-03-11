@@ -29,12 +29,14 @@ void AMagePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	
 	PlayerInputComponent->BindAxis("HoriRot", this, &AMagePlayer::HoriRot);
 	PlayerInputComponent->BindAxis("VertiRot", this, &AMagePlayer::VertiRot);
+	
+	PlayerInputComponent->BindAction("Menu",IE_Pressed,this, &AMagePlayer::Menu);
 
 }
 
 void AMagePlayer::HoriMove(float value)
 {
-	if(value)
+	if(value && !MenuOn)
 	{
 		AddMovementInput(GetActorRightVector(), value);
 	}
@@ -42,7 +44,7 @@ void AMagePlayer::HoriMove(float value)
 
 void AMagePlayer::VertiMove(float value)
 {
-	if(value)
+	if(value && !MenuOn)
 	{
 		AddMovementInput(GetActorForwardVector(), value);
 
@@ -51,7 +53,7 @@ void AMagePlayer::VertiMove(float value)
 
 void AMagePlayer::HoriRot(float value)
 {
-	if(value)
+	if(value && !MenuOn)
 	{
 		AddActorLocalRotation(FRotator(0, value, 0));
 	}
@@ -59,13 +61,18 @@ void AMagePlayer::HoriRot(float value)
 
 void AMagePlayer::VertiRot(float value)
 {
-	if(value)
+	if(value && !MenuOn)
 	{
 		float angle = cam->GetRelativeRotation().Pitch + value;
 
 		if(angle < 65.f && angle > -65.f)
 			cam->AddLocalRotation(FRotator(value,0,0));
 	}
+}
+
+void AMagePlayer::Menu()
+{
+	MenuOn = !MenuOn;
 }
 
 

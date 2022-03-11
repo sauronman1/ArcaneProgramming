@@ -15,11 +15,17 @@ public:
     virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 private:
+
+    bool MenuOn = false;
+    
+    UPROPERTY(EditAnywhere, Category = "Camera")
+    UCameraComponent* cam;
+    
     void HoriMove(float value);
     void VertiMove(float value);
     void HoriRot(float value);
     void VertiRot(float value);
+    void Menu();
 
-    UPROPERTY(EditAnywhere, Category = "Camera")
-    UCameraComponent* cam;
+    
 };
