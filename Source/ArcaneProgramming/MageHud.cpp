@@ -8,7 +8,7 @@
 void AMageHud::BeginPlay()
 {
 	Super::BeginPlay();
-	UIHudInstance =CreateWidget(GetWorld()->GetFirstPlayerController(), UIHud, TEXT("GridMenu"));
+	UIHudInstance = CreateWidget(GetWorld()->GetFirstPlayerController(), UIHud, TEXT("GridMenu"));
 	if (UIHudInstance)
 	{
 		UIHudInstance->AddToViewport();

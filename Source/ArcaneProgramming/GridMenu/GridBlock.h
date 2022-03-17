@@ -4,26 +4,29 @@
 
 #include "GridMenu.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Image.h"
+#include "Components/UniformGridPanel.h"
 #include "GridBlock.generated.h"
 
 class UButton;
-class UGridPanel;
 UCLASS()
 class UGridBlock : public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	virtual void NativeConstruct() override;
+	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
-	UPROPERTY(EditAnywhere)
-	UGridPanel* gridPanel;
 	UPROPERTY(EditAnywhere)
 	int MyID;
 	UPROPERTY(EditAnywhere)
 	FVector4 Neighbours;
 	UPROPERTY(meta = (BindWidget))
-	UButton* ButtonObj;
-
+	UImage* SlotImage;
+	UPROPERTY(meta = (BindWidget))
+	UUniformGridPanel* UniGrid;
+	
 	UFUNCTION()
 	void GetPanel();
+	
 };

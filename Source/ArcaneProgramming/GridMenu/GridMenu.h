@@ -3,9 +3,13 @@
 #include "CoreMinimal.h"
 
 #include "Blueprint/UserWidget.h"
+#include "Components/GridPanel.h"
+
 #include "GridMenu.generated.h"
 
+class USpellBlock;
 class UGridBlock;
+class UGridPanel;
 
 UCLASS(ClassGroup = ("Custom Components"), meta = (BlueprintSpawnableComponent))
 class UGridMenu : public UUserWidget
@@ -15,8 +19,14 @@ class UGridMenu : public UUserWidget
 public:
 	virtual void NativeConstruct() override;
 	
+	UPROPERTY(meta = (BindWidget))
+	UGridPanel* GridBlockPanel;
 	UPROPERTY()
-	TArray<UGridBlock*> slots;
+	TArray<UGridBlock*> Slots; 
+	UPROPERTY()
+	USpellBlock* SelectedSpellBlock;
+
+	void AddMovableBlock(UUserWidget* Block, int SlotID);
 	
-	void GetEmptySlots();
+	void SetEmptySlots();
 };

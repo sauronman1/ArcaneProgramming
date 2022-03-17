@@ -19,7 +19,7 @@ private:
     bool MenuOn = false;
     
     UPROPERTY(EditAnywhere, Category = "Camera")
-    UCameraComponent* cam;
+    UCameraComponent* Cam;
     
     void HoriMove(float value);
     void VertiMove(float value);
