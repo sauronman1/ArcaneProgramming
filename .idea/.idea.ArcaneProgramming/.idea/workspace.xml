@@ -6,23 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bb4ba52-dcfd-4521-9829-d5c08aa2e6df" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArcaneProgramming/.idea/.idea.ArcaneProgramming/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArcaneProgramming/.idea/.idea.ArcaneProgramming/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArcaneProgramming/.idea/.idea.ArcaneProgramming/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArcaneProgramming/.idea/.idea.ArcaneProgramming/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridBlock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridMenu.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_HUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_HUD.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/ArcaneGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/ArcaneGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MotionSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MotionSpell.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,15 +44,15 @@
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MovableBlock.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlock.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/DragWidget.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlock.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MotionSpell.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/DragWidget.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MotionSpell.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MotionSpell.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="266173OhuUHF0MGgpjEDYt2rzdN" />
@@ -311,7 +300,7 @@
       <workItem from="1647414439461" duration="13455000" />
       <workItem from="1647512279582" duration="2891000" />
       <workItem from="1647515262348" duration="1452000" />
-      <workItem from="1647516794445" duration="3693000" />
+      <workItem from="1647516794445" duration="6004000" />
     </task>
     <servers />
   </component>

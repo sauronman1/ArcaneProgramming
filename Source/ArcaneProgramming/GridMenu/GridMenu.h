@@ -22,11 +22,10 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	UGridPanel* GridBlockPanel;
 	UPROPERTY()
-	TArray<UGridBlock*> Slots; 
+	TArray<UUserWidget*> Slots; 
 	UPROPERTY()
 	USpellBlock* SelectedSpellBlock;
 
-	void AddMovableBlock(UUserWidget* Block, int SlotID);
-	
+	void SetSlotInArray(UUserWidget* Block, int SlotID);
 	void SetEmptySlots();
 };

@@ -3,9 +3,11 @@
 
 #include "MotionSpell.h"
 
+#include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
+#include "Kismet/GameplayStatics.h"
 
 FReply UMotionSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
@@ -22,7 +24,11 @@ void UMotionSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPoin
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
 	UDragWidget* DragOperation = NewObject<UDragWidget>();
 	 if(OccupiedSlot != nullptr)
+	 {
+	 	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+	 	GameMode->GridMenu->SetSlotInArray(OccupiedSlot, OccupiedSlot->SlotID);
 	 	OccupiedSlot->UniGrid->RemoveChild(this);
+	 }
 
 	if(!PlacedOnGrid)
 	{

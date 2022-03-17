@@ -1,10 +1,12 @@
 #include "GridBlock.h"
 
 #include "DragWidget.h"
+#include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Blueprint/SlateBlueprintLibrary.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Components/Button.h"
 #include "Components/UniformGridPanel.h"
+#include "Kismet/GameplayStatics.h"
 #include "MovableBlocks/SpellBlock.h"
 
 void UGridBlock::NativeConstruct()
@@ -29,5 +31,9 @@ bool UGridBlock::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent&
 	UniGrid->AddChildToUniformGrid(InDragAndDrop->WidgetReference);
 	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->PlacedOnGrid = true;
 	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->OccupiedSlot = this;
+
+	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+	GameMode->GridMenu->SetSlotInArray(InDragAndDrop->WidgetReference, SlotID);
+	
 	return true;
 }

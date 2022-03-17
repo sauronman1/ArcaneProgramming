@@ -18,7 +18,7 @@ public:
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
 	UPROPERTY(EditAnywhere)
-	int MyID;
+	int SlotID;
 	UPROPERTY(EditAnywhere)
 	FVector4 Neighbours;
 	UPROPERTY(meta = (BindWidget))
