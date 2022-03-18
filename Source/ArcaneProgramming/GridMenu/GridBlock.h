@@ -17,10 +17,17 @@ public:
 	virtual void NativeConstruct() override;
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
+	UPROPERTY(VisibleAnywhere)
+	int Left;
+	UPROPERTY(VisibleAnywhere)
+	int Right;
+	UPROPERTY(VisibleAnywhere)
+	int Up;
+	UPROPERTY(VisibleAnywhere)
+	int Down;
+	
 	UPROPERTY(EditAnywhere)
 	int SlotID;
-	UPROPERTY(EditAnywhere)
-	FVector4 Neighbours;
 	UPROPERTY(meta = (BindWidget))
 	UImage* SlotImage;
 	UPROPERTY(meta = (BindWidget))

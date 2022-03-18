@@ -14,7 +14,7 @@ FReply UMotionSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const 
 	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
 	FEventReply Reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
-
+	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
 	return Reply.NativeReply;
 
 }
@@ -25,8 +25,7 @@ void UMotionSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPoin
 	UDragWidget* DragOperation = NewObject<UDragWidget>();
 	 if(OccupiedSlot != nullptr)
 	 {
-	 	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
-	 	GameMode->GridMenu->SetSlotInArray(OccupiedSlot, OccupiedSlot->SlotID);
+	 	GridMenu->SetSlotInArray(OccupiedSlot, OccupiedSlot->SlotID);
 	 	OccupiedSlot->UniGrid->RemoveChild(this);
 	 }
 

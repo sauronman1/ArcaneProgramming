@@ -22,7 +22,7 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	UGridPanel* GridBlockPanel;
 	UPROPERTY()
-	TArray<UUserWidget*> Slots; 
+	TMap<int, UWidget*> Slots; 
 	UPROPERTY()
 	USpellBlock* SelectedSpellBlock;
 

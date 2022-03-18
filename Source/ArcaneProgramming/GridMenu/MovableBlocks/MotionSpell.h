@@ -19,7 +19,13 @@ class ARCANEPROGRAMMING_API UMotionSpell : public USpellBlock
 	TSubclassOf<UUserWidget> SpellBlueprint;
 	UPROPERTY()
 	UUserWidget* SpellBlueprintInstance;
-	
+	UPROPERTY()
+	UGridMenu* GridMenu;
+
+	UPROPERTY()
+	AActor* Target;
+	UPROPERTY()
+	FVector Direction;
 	
 	virtual FReply NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
 	virtual void NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation) override;

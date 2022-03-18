@@ -1,5 +1,7 @@
 #include "GridMenu.h"
 
+#include <ThirdParty/PhysX3/PxShared/src/foundation/include/PsArray.h>
+
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "GridBlock.h"
@@ -20,10 +22,89 @@ void UGridMenu::NativeConstruct()
 void UGridMenu::SetEmptySlots()
 {
 	TArray<UWidget*> Array = GridBlockPanel->GetAllChildren();
-	Slots.SetNum(Array.Num());
-	for (int i = 0; i < Array.Num(); i++)
+
+	int width = 6;
+	int height = 6;
+
+	for(int i = 0; i<Array.Num(); i++)
 	{
-		Slots[i] = Cast<UUserWidget>(Array[i]);
+		UGridBlock* block = Cast<UGridBlock>(Array[i]);
+		Slots.Add(block->SlotID, Array[i]);
+	}
+
+	int currentIndex = 0;
+	for (int y = 0; y < height; y++)
+	{
+		for(int x = 0; x < width; x++)
+		{
+			UGridBlock* block = Cast<UGridBlock>(*Slots.Find(currentIndex));
+
+			if(y == 0 && x == 0)
+			{
+				block->Left = -1;
+				block->Up = -1;
+				block->Right = currentIndex + 1;
+				block->Down = currentIndex + 6;
+			}
+			else if(y == 0 && x == width)
+			{
+				block->Left = currentIndex - 1;
+				block->Up = -1;
+				block->Right = -1;
+				block->Down = currentIndex + 6;
+			}
+			else if(y == height && x == 0)
+			{
+				block->Left = -1;
+				block->Up = currentIndex - 6;
+				block->Right = currentIndex + 1;
+				block->Down = -1;
+			}
+			else if(y == height && x == width)
+			{
+				block->Left = currentIndex - 1;
+				block->Up = currentIndex - 6;
+				block->Right = -1;
+				block->Down = -1;
+			}
+			else if(y == 0)
+			{
+				block->Left = currentIndex - 1;
+				block->Up = -1;
+				block->Right = currentIndex + 1;
+				block->Down = currentIndex + 6;
+			}
+			else if(y == height)
+			{
+				block->Left = currentIndex - 1;
+				block->Up = currentIndex-6;
+				block->Right = currentIndex + 1;
+				block->Down = -1;
+			}
+			else if(x == 0)
+			{
+				block->Left = -1;
+				block->Up = currentIndex - 6;
+				block->Right = currentIndex + 1;
+				block->Down = currentIndex + 6;
+			}
+			else if(x == width)
+			{
+				block->Left = currentIndex - 1;
+				block->Up = currentIndex - 6;
+				block->Right = -1;
+				block->Down = currentIndex + 6;
+			}
+			else
+			{
+				block->Left = currentIndex - 1;
+				block->Up = currentIndex - 6;
+				block->Right = currentIndex + 1;
+				block->Down = currentIndex + 6;
+			}
+
+			currentIndex++;
+		}
 	}
 }
 
