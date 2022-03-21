@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "MageHud.h"
 #include "GameFramework/GameModeBase.h"
 #include "GridMenu/GridMenu.h"
 
@@ -20,4 +22,6 @@ class ARCANEPROGRAMMING_API AArcaneGameModeBase : public AGameModeBase
 	
 	UPROPERTY()
 	UGridMenu* GridMenu;
+	UPROPERTY()
+	AMageHud* MageHud;
 };

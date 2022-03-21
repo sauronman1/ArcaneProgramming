@@ -16,9 +16,12 @@ class ARCANEPROGRAMMING_API AMageHud : public AHUD
 
 	public:
 	virtual void BeginPlay() override;
-
+	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UUserWidget> UIHud;
 	UPROPERTY()
 	UUserWidget* UIHudInstance;
+
+	void MenuOn();
+	void MenuOff();
 };

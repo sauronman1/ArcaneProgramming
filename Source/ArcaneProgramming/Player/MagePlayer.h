@@ -10,7 +10,6 @@ class AMagePlayer : public ACharacter
     GENERATED_BODY()
 public:
     AMagePlayer();
-    virtual void BeginPlay() override;
     virtual void Tick(float DeltaTime) override;
     virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 

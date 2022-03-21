@@ -7,15 +7,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8bb4ba52-dcfd-4521-9829-d5c08aa2e6df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MotionSpell.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MotionSpell.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlock.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlock.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlock.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlock.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultInput.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/ArcaneGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/ArcaneGameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,14 +41,9 @@
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/ArcaneProgramming.Build.cs" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBox.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBox.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/ArcaneGameModeBase.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlock.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/MovableBlock.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlock.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/DragWidget.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/DragWidget.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridBlock.h" />
@@ -61,8 +57,14 @@
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/PrarmeterBlocks/ActorUpVector.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/PrarmeterBlocks/ActorUpVector.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/ArcaneGameModeBase.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="266173OhuUHF0MGgpjEDYt2rzdN" />
@@ -313,7 +315,7 @@
       <workItem from="1647515262348" duration="1452000" />
       <workItem from="1647516794445" duration="6004000" />
       <workItem from="1647591512142" duration="11073000" />
-      <workItem from="1647855939839" duration="7059000" />
+      <workItem from="1647855939839" duration="15912000" />
     </task>
     <servers />
   </component>

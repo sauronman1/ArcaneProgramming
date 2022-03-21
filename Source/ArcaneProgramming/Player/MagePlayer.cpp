@@ -1,5 +1,9 @@
 #include "MagePlayer.h"
 
+#include "ArcaneProgramming/ArcaneGameModeBase.h"
+#include "Kismet/GameplayStatics.h"
+#include "ArcaneProgramming/MageHud.h"
+
 AMagePlayer::AMagePlayer()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -9,20 +13,6 @@ AMagePlayer::AMagePlayer()
 	Cam = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Cam->AttachTo(RootComponent);
 	Cam->SetRelativeLocation(FVector(0,0,40));
-}
-
-void AMagePlayer::BeginPlay()
-{
-	Super::BeginPlay();
-
-	APlayerController* Player = Cast<APlayerController>(GetController());
-	if(Player)
-	{
-		Player->bShowMouseCursor = true;
-		Player->bEnableClickEvents = true;
-		Player->bEnableMouseOverEvents = true;
-
-	}
 }
 
 void AMagePlayer::Tick(float DeltaTime)
@@ -82,6 +72,31 @@ void AMagePlayer::VertiRot(float value)
 void AMagePlayer::Menu()
 {
 	MenuOn = !MenuOn;
+	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	if(MenuOn)
+	{
+		GameMode->MageHud->MenuOn();
+		APlayerController* Player = Cast<APlayerController>(GetController());
+		if(Player)
+		{
+			Player->bShowMouseCursor = true;
+			Player->bEnableClickEvents = true;
+			Player->bEnableMouseOverEvents = true;
+
+		}
+	}
+	if(!MenuOn)
+	{
+		GameMode->MageHud->MenuOff();
+		APlayerController* Player = Cast<APlayerController>(GetController());
+		if(Player && !MenuOn)
+		{
+			Player->bShowMouseCursor = false;
+			Player->bEnableClickEvents = false;
+			Player->bEnableMouseOverEvents = false;
+		}
+	}
 }
 
 

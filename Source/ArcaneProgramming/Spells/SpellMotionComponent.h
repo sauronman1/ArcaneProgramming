@@ -4,7 +4,7 @@
 #include "Components/ActorComponent.h"
 #include "SpellMotionComponent.generated.h"
 
-UCLASS()
+UCLASS(BlueprintType, Meta=(BlueprintSpawnableComponent))
 class USpellMotionComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -12,5 +12,6 @@ class USpellMotionComponent : public UActorComponent
 	AActor* Target;
 	FVector Direction;
 
-	
+	virtual void BeginPlay() override;
+	void AddMotion();
 };
