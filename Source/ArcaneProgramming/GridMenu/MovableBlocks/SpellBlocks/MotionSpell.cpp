@@ -25,8 +25,9 @@ void UMotionSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPoin
 	UDragWidget* DragOperation = NewObject<UDragWidget>();
 	 if(OccupiedSlot != nullptr)
 	 {
-	 	GridMenu->SetSlotInArray(OccupiedSlot, OccupiedSlot->SlotID);
+	 	GridMenu->SetSlotInArray(OccupiedSlot, OccupiedSlot->SlotID, true);
 	 	OccupiedSlot->UniGrid->RemoveChild(this);
+	 	//TODO if needed, make an invisible background widget to handle anything dropped outside the menu
 	 }
 
 	if(!PlacedOnGrid)

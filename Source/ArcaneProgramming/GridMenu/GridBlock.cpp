@@ -7,7 +7,7 @@
 #include "Components/Button.h"
 #include "Components/UniformGridPanel.h"
 #include "Kismet/GameplayStatics.h"
-#include "MovableBlocks/SpellBlock.h"
+#include "MovableBlocks/SpellBlocks/SpellBlock.h"
 
 void UGridBlock::NativeConstruct()
 {
@@ -31,9 +31,10 @@ bool UGridBlock::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent&
 	UniGrid->AddChildToUniformGrid(InDragAndDrop->WidgetReference);
 	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->PlacedOnGrid = true;
 	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->OccupiedSlot = this;
+	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->SlotID = SlotID;
 
 	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
-	GameMode->GridMenu->SetSlotInArray(InDragAndDrop->WidgetReference, SlotID);
+	GameMode->GridMenu->SetSlotInArray(InDragAndDrop->WidgetReference, SlotID, false);
 	
 	return true;
 }

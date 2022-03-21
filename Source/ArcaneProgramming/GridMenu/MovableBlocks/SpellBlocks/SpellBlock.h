@@ -16,9 +16,12 @@ class ARCANEPROGRAMMING_API USpellBlock : public UUserWidget
 	GENERATED_BODY()
 public:
 	bool PlacedOnGrid = false;
+	bool HasActivated = false;
+	int SlotID;
 
-	 UPROPERTY()
-	 UGridBlock* OccupiedSlot;
+	UPROPERTY()
+	UGridBlock* OccupiedSlot;	
 	
 	virtual void UpdateNeighbours() PURE_VIRTUAL(USpellBlock);
+	virtual void ActivateSpell() PURE_VIRTUAL(USpellBlock);
 };

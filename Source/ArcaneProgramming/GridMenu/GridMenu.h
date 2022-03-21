@@ -26,6 +26,6 @@ public:
 	UPROPERTY()
 	USpellBlock* SelectedSpellBlock;
 
-	void SetSlotInArray(UUserWidget* Block, int SlotID);
+	void SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBlock);
 	void SetEmptySlots();
 };

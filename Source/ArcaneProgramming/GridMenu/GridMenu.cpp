@@ -5,7 +5,7 @@
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "GridBlock.h"
-#include "MovableBlocks/SpellBlock.h"
+#include "MovableBlocks/SpellBlocks/SpellBlock.h"
 
 void UGridMenu::NativeConstruct()
 {
@@ -108,11 +108,40 @@ void UGridMenu::SetEmptySlots()
 	}
 }
 
-void UGridMenu::SetSlotInArray(UUserWidget* Block, int SlotID)
+void UGridMenu::SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBlock)
 {	
-	Slots[SlotID] = Block;
 	for(int i = 0; i<Slots.Num(); i++)
 	{
+		if(!RemoveBlock)
+		{
+			UGridBlock* CurrentBlock = Cast<UGridBlock>(Slots[i]);
+			if(CurrentBlock != nullptr)
+			{
+				if(CurrentBlock->SlotID == SlotID)
+				{
+					USpellBlock* SpellBlock = Cast<USpellBlock>(InBlock);
+					if(SpellBlock != nullptr) 
+						Slots[i] = SpellBlock;
+
+				}
+			}
+		}
+		else
+		{			
+			USpellBlock* SpellBlock = Cast<USpellBlock>(Slots[i]);
+			if(SpellBlock != nullptr)
+			{
+				if(SpellBlock->SlotID == SlotID)
+				{
+					UGridBlock* GridBlock = Cast<UGridBlock>(InBlock);
+					Slots[i] = GridBlock;
+
+				}
+			}
+
+			
+		}
+		
 		UE_LOG(LogTemp, Warning, TEXT("%s %d"), *Slots[i]->GetName(), i);
 	}
 }
