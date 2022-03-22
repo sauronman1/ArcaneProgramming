@@ -3,22 +3,30 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
-#include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "Blueprint/UserWidget.h"
-#include "SpellBlock.generated.h"
+#include "ParameterBlock.generated.h"
 
+class UDragWidget;
 class UGridBlock;
 class UGridMenu;
 
+enum ParameterType
+{
+	Vector,
+	Actor,
+	
+};
+
 UCLASS(Abstract)
-class ARCANEPROGRAMMING_API USpellBlock : public UUserWidget
+class ARCANEPROGRAMMING_API UParameterBlock : public UUserWidget
 {
 	GENERATED_BODY()
-public:
+
+public:	
+	ParameterType ParaType;
+
 	bool PlacedOnGrid = false;
 	bool HasActivated = false;
-	bool Debbuged = false;
 	int SlotID;
 
 	UPROPERTY()
@@ -31,6 +39,8 @@ public:
 	TSubclassOf<UUserWidget> SpellBlueprint;
 	
 	UDragWidget* DragOperator(UDragWidget* DragOperation);
-	virtual void UpdateNeighbours(){}
-	virtual void ActivateSpell() PURE_VIRTUAL(USpellBlock);
+	virtual void UpdateNeighbours() PURE_VIRTUAL(USpellBlock);
+	
+	virtual FVector Vector() {return FVector::ZeroVector;}
+	virtual AActor* Target() {return nullptr;}
 };

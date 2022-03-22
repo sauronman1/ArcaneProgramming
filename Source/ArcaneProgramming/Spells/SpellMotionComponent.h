@@ -8,10 +8,9 @@ UCLASS(BlueprintType, Meta=(BlueprintSpawnableComponent))
 class USpellMotionComponent : public UActorComponent
 {
 	GENERATED_BODY()
+public:
+	
+	
 
-	AActor* Target;
-	FVector Direction;
-
-	virtual void BeginPlay() override;
-	void AddMotion();
+	void AddMotion(FVector Direction);
 };

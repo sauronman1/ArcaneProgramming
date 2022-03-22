@@ -7,6 +7,9 @@
 #include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
+#include "ArcaneProgramming/Player/MagePlayer.h"
+#include "ArcaneProgramming/Spells/SpellMotionComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 FReply UMotionSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
@@ -23,31 +26,8 @@ void UMotionSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPoin
 {
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
 	UDragWidget* DragOperation = NewObject<UDragWidget>();
-	 if(OccupiedSlot != nullptr)
-	 {
-	 	GridMenu->SetSlotInArray(OccupiedSlot, OccupiedSlot->SlotID, true);
-	 	OccupiedSlot->UniGrid->RemoveChild(this);
-	 	OccupiedSlot->SlotImage->SetVisibility(ESlateVisibility::Visible);
-	 	OccupiedSlot = nullptr;
-	 	
-	 	//TODO if needed, make an invisible background widget to handle anything dropped outside the menu
-	 }
-
-	if(!PlacedOnGrid)
-	{
-		
-		SpellBlueprintInstance = CreateWidget(this, SpellBlueprint, TEXT("Spell Motion"));
-		DragOperation->DefaultDragVisual = SpellBlueprintInstance;
-		DragOperation->WidgetReference = SpellBlueprintInstance;
-	}
-	else
-	{
-		DragOperation->DefaultDragVisual = this;
-		DragOperation->WidgetReference = this;
-		PlacedOnGrid = false;
-	}
 	
-	OutOperation = DragOperation;
+	OutOperation = DragOperator(DragOperation);
 }
 
 bool UMotionSpell::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
@@ -59,8 +39,49 @@ bool UMotionSpell::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEven
 
 void UMotionSpell::UpdateNeighbours()
 {
+	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
+
+	for (int Neighbour : Neighbours)
+	{
+		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
+		{
+			UParameterBlock* TargetBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
+			if(TargetBlock != nullptr)
+			{
+				if(TargetBlock->ParaType == ParameterType::Actor)
+				{
+					Target = TargetBlock->Target();
+				}
+
+				if(TargetBlock->ParaType == ParameterType::Vector)
+				{
+					Direction = TargetBlock->Vector();
+				}
+			}
+
+			
+		}
+
+		
+	}
+
+	if(Target == nullptr)
+	{
+		//Change to Error material
+	}
 	
 }
+
+void UMotionSpell::ActivateSpell()
+{
+	if(Target == nullptr)
+	{
+		return;
+	}
+	
+	Target->FindComponentByClass<USpellMotionComponent>()->AddMotion(Direction);
+}
+
 
 
 

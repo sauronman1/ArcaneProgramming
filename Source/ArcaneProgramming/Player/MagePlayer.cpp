@@ -3,6 +3,7 @@
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "ArcaneProgramming/MageHud.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h"
 
 AMagePlayer::AMagePlayer()
 {
@@ -14,6 +15,9 @@ AMagePlayer::AMagePlayer()
 	Cam->AttachTo(RootComponent);
 	Cam->SetRelativeLocation(FVector(0,0,40));
 }
+
+
+
 
 void AMagePlayer::Tick(float DeltaTime)
 {
@@ -30,7 +34,7 @@ void AMagePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("VertiRot", this, &AMagePlayer::VertiRot);
 	
 	PlayerInputComponent->BindAction("Menu",IE_Pressed,this, &AMagePlayer::Menu);
-
+	PlayerInputComponent->BindAction("ActivateSpell",IE_Pressed,this, &AMagePlayer::ActivateSpell);
 }
 
 void AMagePlayer::HoriMove(float value)
@@ -99,6 +103,16 @@ void AMagePlayer::Menu()
 	}
 }
 
+void AMagePlayer::ActivateSpell()
+{
+	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+	for(int i = 0; i<GridMenu->Slots.Num(); i++)
+	{
+		USpellBlock* SpellBlock = Cast<USpellBlock>(GridMenu->Slots[i]);
+		if(SpellBlock != nullptr)
+			SpellBlock->ActivateSpell();
+	}
+}
 
 
 

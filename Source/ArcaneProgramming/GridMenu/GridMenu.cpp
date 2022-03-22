@@ -5,6 +5,7 @@
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "GridBlock.h"
+#include "MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "MovableBlocks/SpellBlocks/SpellBlock.h"
 
 void UGridMenu::NativeConstruct()
@@ -110,39 +111,41 @@ void UGridMenu::SetEmptySlots()
 
 void UGridMenu::SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBlock)
 {	
-	for(int i = 0; i<Slots.Num(); i++)
+	
+		//TODO change to fit map
+	if(!RemoveBlock)
 	{
-		if(!RemoveBlock)
+		UGridBlock* CurrentBlock = Cast<UGridBlock>(*Slots.Find(SlotID));
+		if(CurrentBlock != nullptr)
 		{
-			UGridBlock* CurrentBlock = Cast<UGridBlock>(Slots[i]);
-			if(CurrentBlock != nullptr)
-			{
-				if(CurrentBlock->SlotID == SlotID)
-				{
-					USpellBlock* SpellBlock = Cast<USpellBlock>(InBlock);
-					if(SpellBlock != nullptr) 
-						Slots[i] = SpellBlock;
-
-				}
-			}
-		}
-		else
-		{			
-			USpellBlock* SpellBlock = Cast<USpellBlock>(Slots[i]);
+			USpellBlock* SpellBlock = Cast<USpellBlock>(InBlock);
 			if(SpellBlock != nullptr)
 			{
-				if(SpellBlock->SlotID == SlotID)
-				{
-					UGridBlock* GridBlock = Cast<UGridBlock>(InBlock);
-					Slots[i] = GridBlock;
-
-				}
+				Slots.Add(SlotID, SpellBlock);
+				SpellBlock->UpdateNeighbours();
 			}
-
 			
+			UParameterBlock* ParameterBlock = Cast<UParameterBlock>(InBlock);
+			if(ParameterBlock != nullptr)
+			{
+				Slots.Add(SlotID, ParameterBlock);
+				ParameterBlock->UpdateNeighbours();
+			}
+		}
+	}
+	else
+	{			
+		USpellBlock* SpellBlock = Cast<USpellBlock>(*Slots.Find(SlotID));
+		UParameterBlock* ParameterBlock = Cast<UParameterBlock>(*Slots.Find(SlotID));
+		if(SpellBlock != nullptr || ParameterBlock != nullptr)
+		{
+			UGridBlock* GridBlock = Cast<UGridBlock>(InBlock);
+			Slots.Add(SlotID, GridBlock);
 		}
 		
-		UE_LOG(LogTemp, Warning, TEXT("%s %d"), *Slots[i]->GetName(), i);
 	}
+
+	for(int i = 0; i<Slots.Num(); i++)
+		UE_LOG(LogTemp, Warning, TEXT("%s %d"), *Slots[i]->GetName(), i);
 }
 

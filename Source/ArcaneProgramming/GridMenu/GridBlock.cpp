@@ -7,6 +7,7 @@
 #include "Components/Button.h"
 #include "Components/UniformGridPanel.h"
 #include "Kismet/GameplayStatics.h"
+#include "MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "MovableBlocks/SpellBlocks/SpellBlock.h"
 
 void UGridBlock::NativeConstruct()
@@ -29,12 +30,29 @@ bool UGridBlock::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent&
 	InDragAndDrop->WidgetReference->AddToViewport();
 	SlotImage->SetVisibility(ESlateVisibility::HitTestInvisible);
 	UniGrid->AddChildToUniformGrid(InDragAndDrop->WidgetReference);
-	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->PlacedOnGrid = true;
-	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->OccupiedSlot = this;
-	Cast<USpellBlock>(InDragAndDrop->WidgetReference)->SlotID = SlotID;
 
+	USpellBlock* SpellBlock = Cast<USpellBlock>(InDragAndDrop->WidgetReference);
+	if(SpellBlock != nullptr)
+	{
+		SpellBlock->PlacedOnGrid = true;
+		SpellBlock->OccupiedSlot = this;
+		SpellBlock->SlotID = SlotID;
+		SpellBlock->GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+	}
+
+	UParameterBlock* ParameterBlock = Cast<UParameterBlock>(InDragAndDrop->WidgetReference);
+	if(ParameterBlock != nullptr)
+	{
+		ParameterBlock->PlacedOnGrid = true;
+		ParameterBlock->OccupiedSlot = this;
+		ParameterBlock->SlotID = SlotID;
+		ParameterBlock->GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+		UE_LOG(LogTemp, Warning, TEXT("HEYA"));
+
+	}
 	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 	GameMode->GridMenu->SetSlotInArray(InDragAndDrop->WidgetReference, SlotID, false);
+
 	
 	return true;
 }
