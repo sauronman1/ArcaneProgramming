@@ -39,7 +39,7 @@ public:
 	TSubclassOf<UUserWidget> SpellBlueprint;
 	
 	UDragWidget* DragOperator(UDragWidget* DragOperation);
-	virtual void UpdateNeighbours() PURE_VIRTUAL(USpellBlock);
+	virtual void UpdateNeighbours();
 	
 	virtual FVector Vector() {return FVector::ZeroVector;}
 	virtual AActor* Target() {return nullptr;}

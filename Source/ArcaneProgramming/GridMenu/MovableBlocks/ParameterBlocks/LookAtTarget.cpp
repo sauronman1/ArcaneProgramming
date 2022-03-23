@@ -1,8 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "PlayerTarget.h"
+#include "LookAtTarget.h"
 
+#include "DrawDebugHelpers.h"
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"
@@ -10,15 +11,13 @@
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h"
 #include "ArcaneProgramming/Player/MagePlayer.h"
-#include "Gameframework/CharacterMovementComponent.h"
 
-UPlayerTarget::UPlayerTarget()
+ULookAtTarget::ULookAtTarget()
 {
 	ParaType = ParameterType::Actor;
 }
 
-
-FReply UPlayerTarget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+FReply ULookAtTarget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
 	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
@@ -29,7 +28,7 @@ FReply UPlayerTarget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const
 
 }
 
-void UPlayerTarget::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
+void ULookAtTarget::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
 {
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
 	UDragWidget* DragOperation = NewObject<UDragWidget>();
@@ -37,7 +36,7 @@ void UPlayerTarget::NativeOnDragDetected(const FGeometry& InGeometry, const FPoi
 	OutOperation = DragOperator(DragOperation);
 }
 
-bool UPlayerTarget::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
+bool ULookAtTarget::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
 {
 	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
 	
@@ -45,10 +44,24 @@ bool UPlayerTarget::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEve
 }
 
 
-AActor* UPlayerTarget::Target()
+AActor* ULookAtTarget::Target()
 {
+	AActor* Target = nullptr;
+
+	FHitResult HitResult;
+
+	const FVector Start = Cast<AMagePlayer>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->Cam->GetComponentLocation();
+	FVector End = Start + Cast<AMagePlayer>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->Cam->GetComponentRotation().Vector() * TraceDistance;
+
+	FCollisionQueryParams TraceParams;
+	bool IsHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
+
+	if(IsHit)
+	{
+		DrawDebugLine(GetWorld(), Start, End, FColor::Orange, false, 0.1f);
+		Target = HitResult.GetActor();
+	}
 	
-	AActor* Target = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 	//AMagePlayer* Character = Cast<AMagePlayer>(Target);
 	return Target;
 }

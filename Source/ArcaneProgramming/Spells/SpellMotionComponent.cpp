@@ -12,5 +12,12 @@ void USpellMotionComponent::AddMotion(FVector Direction)
 		Character->GetCharacterMovement()->AddImpulse(FMath::Square(200) * FVector::UpVector);
 	}
 
+	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
+	if(MeshComponent && GetOwner()->IsRootComponentMovable())
+	{
+		FVector Up = FVector::UpVector;
+		MeshComponent->AddImpulse(Up * 500.f * MeshComponent->GetMass());
+	}
+
 	
 }

@@ -74,10 +74,21 @@ void UMotionSpell::UpdateNeighbours()
 
 void UMotionSpell::ActivateSpell()
 {
+	UpdateNeighbours();
+	
 	if(Target == nullptr)
 	{
 		return;
 	}
+
+	USpellMotionComponent* SpellMotionComponent = Target->FindComponentByClass<USpellMotionComponent>();
+	if(SpellMotionComponent == nullptr)
+	{
+		SpellMotionComponent = NewObject<USpellMotionComponent>(Target, USpellMotionComponent::StaticClass());
+		SpellMotionComponent->RegisterComponent();
+	}
+
+	
 	
 	Target->FindComponentByClass<USpellMotionComponent>()->AddMotion(Direction);
 }

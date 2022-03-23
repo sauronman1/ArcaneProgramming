@@ -12,11 +12,13 @@ void UGridMenu::NativeConstruct()
 {
 	AArcaneGameModeBase* GameModeBase = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(this));
 	GameModeBase->GridMenu = this;
-	SetEmptySlots();
-	//TODO Spell and Parameter block will inherit base class so when iterating through array, will only care about the ones that inherit from it
-	//TODO When adding nes spells/parameter blocks to the grid, check if their neighbours are not empty to know if they should add them as parameters
+	if(!MenuSet)
+	{
+		SetEmptySlots();
+		MenuSet = true;
+	}
+	
 	//TODO Make a primary block or slot on menu to help set a spell as primary spell
-	//TODO Set the IDs on the gridmenu again
 }
 
 

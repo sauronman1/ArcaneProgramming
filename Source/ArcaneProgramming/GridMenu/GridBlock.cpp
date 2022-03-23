@@ -47,7 +47,6 @@ bool UGridBlock::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent&
 		ParameterBlock->OccupiedSlot = this;
 		ParameterBlock->SlotID = SlotID;
 		ParameterBlock->GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
-		UE_LOG(LogTemp, Warning, TEXT("HEYA"));
 
 	}
 	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));

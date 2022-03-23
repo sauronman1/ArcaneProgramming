@@ -5,6 +5,7 @@
 #include "ArcaneProgramming/GridMenu/GridMenu.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/DragWidget.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h"
 
 UDragWidget* UParameterBlock::DragOperator(UDragWidget* DragOperation)
 {
@@ -34,4 +35,24 @@ UDragWidget* UParameterBlock::DragOperator(UDragWidget* DragOperation)
 	}
 
 	return DragOperation;
+}
+
+void UParameterBlock::UpdateNeighbours()
+{
+	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
+
+	for (int Neighbour : Neighbours)
+	{
+		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
+		{
+			USpellBlock* SpellBlock = Cast<USpellBlock>(*GridMenu->Slots.Find(Neighbour));
+			if(SpellBlock != nullptr)
+				SpellBlock->UpdateNeighbours();
+
+			UParameterBlock* ParameterBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
+			if(ParameterBlock != nullptr)
+				ParameterBlock->UpdateNeighbours();
+			
+		}
+	}
 }

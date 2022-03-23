@@ -15,6 +15,9 @@ class AMagePlayer : public ACharacter
 public:
     AMagePlayer();
 
+    UPROPERTY(EditAnywhere, Category = "Camera")
+    UCameraComponent* Cam;
+    
     virtual void Tick(float DeltaTime) override;
     virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
@@ -22,8 +25,6 @@ private:
 
     bool MenuOn = false;
     
-    UPROPERTY(EditAnywhere, Category = "Camera")
-    UCameraComponent* Cam;
     UPROPERTY()
     UGridMenu* GridMenu;
     
