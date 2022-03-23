@@ -340,7 +340,7 @@
       <workItem from="1647855939839" duration="16326000" />
       <workItem from="1647887120282" duration="245000" />
       <workItem from="1647935526011" duration="20396000" />
-      <workItem from="1648033400505" duration="6396000" />
+      <workItem from="1648033400505" duration="7111000" />
     </task>
     <servers />
   </component>
@@ -349,21 +349,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp</url>
-          <line>14</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/LookAtTarget.cpp</url>
-          <line>58</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
