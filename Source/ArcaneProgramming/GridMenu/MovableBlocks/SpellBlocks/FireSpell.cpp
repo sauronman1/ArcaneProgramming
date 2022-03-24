@@ -1,28 +1,30 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MotionSpell.h"
+#include "FireSpell.h"
 
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
-#include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
-#include "ArcaneProgramming/Player/MagePlayer.h"
-#include "ArcaneProgramming/Spells/SpellMotionComponent.h"
-#include "Kismet/GameplayStatics.h"
+#include "ArcaneProgramming/Spells/FireSpellComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
-FReply UMotionSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+
+FReply UFireSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
 	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
 	FEventReply Reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
 	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *FireButton->PSComponent->GetName());
+	
 	return Reply.NativeReply;
 
 }
 
-void UMotionSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
+void UFireSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
 {
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
 	UDragWidget* DragOperation = NewObject<UDragWidget>();
@@ -30,14 +32,14 @@ void UMotionSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPoin
 	OutOperation = DragOperator(DragOperation);
 }
 
-bool UMotionSpell::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
+bool UFireSpell::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
 {
 	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
 	
 	return true;
 }
 
-void UMotionSpell::UpdateNeighbours()
+void UFireSpell::UpdateNeighbours()
 {
 	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
 
@@ -52,14 +54,7 @@ void UMotionSpell::UpdateNeighbours()
 				{
 					Target = TargetBlock->Target();
 				}
-				if(TargetBlock->ParaType == ParameterType::Direction)
-				{
-					Direction = TargetBlock->Direction();
-				}
-				if(TargetBlock->ParaType == ParameterType::VectorEnum)
-				{
-					VType = TargetBlock->VType; 
-				}
+				
 			}
 
 			
@@ -75,7 +70,7 @@ void UMotionSpell::UpdateNeighbours()
 	
 }
 
-void UMotionSpell::ActivateSpell()
+void UFireSpell::ActivateSpell()
 {
 	UpdateNeighbours();
 	
@@ -84,18 +79,16 @@ void UMotionSpell::ActivateSpell()
 		return;
 	}
 
-	USpellMotionComponent* SpellMotionComponent = Target->FindComponentByClass<USpellMotionComponent>();
-	if(SpellMotionComponent == nullptr)
+	UFireSpellComponent* FireSpellComponent = Target->FindComponentByClass<UFireSpellComponent>();
+	if(FireSpellComponent == nullptr)
 	{
-		SpellMotionComponent = NewObject<USpellMotionComponent>(Target, USpellMotionComponent::StaticClass());
-		SpellMotionComponent->RegisterComponent();
+		FireSpellComponent = NewObject<UFireSpellComponent>(Target, UFireSpellComponent::StaticClass());
+		FireSpellComponent->RegisterComponent();
+		FireSpellComponent->PSComponent = FireButton->PSComponent;
+		
 	}
 
 	
 	
-	Target->FindComponentByClass<USpellMotionComponent>()->AddMotion(Direction, VType);
+	Target->FindComponentByClass<UFireSpellComponent>()->IncinerateTarget();
 }
-
-
-
-

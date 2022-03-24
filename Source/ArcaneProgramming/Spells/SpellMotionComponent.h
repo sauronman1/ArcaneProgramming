@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Coreminimal.h"
+
+#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "Components/ActorComponent.h"
 #include "SpellMotionComponent.generated.h"
 
@@ -12,5 +14,5 @@ public:
 	
 	
 
-	void AddMotion(FVector Direction);
+	void AddMotion(FVector Direction, VectorType VType);
 };

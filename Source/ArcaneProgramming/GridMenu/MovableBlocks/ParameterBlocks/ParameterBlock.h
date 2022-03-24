@@ -12,9 +12,20 @@ class UGridMenu;
 
 enum ParameterType
 {
-	Vector,
+	Direction,
+	VectorEnum,
+	Position,
 	Actor,
 	
+};
+
+enum VectorType
+{
+	None,
+	ActorUpVector,
+	ActorRightVector,
+	ActorForwardVector,
+	ActorPosition,
 };
 
 UCLASS(Abstract)
@@ -24,7 +35,8 @@ class ARCANEPROGRAMMING_API UParameterBlock : public UUserWidget
 
 public:	
 	ParameterType ParaType;
-
+	VectorType VType;
+	
 	bool PlacedOnGrid = false;
 	bool HasActivated = false;
 	int SlotID;
@@ -40,7 +52,9 @@ public:
 	
 	UDragWidget* DragOperator(UDragWidget* DragOperation);
 	virtual void UpdateNeighbours();
-	
-	virtual FVector Vector() {return FVector::ZeroVector;}
+
+	virtual FVector Position() {return FVector::ZeroVector;}
+	virtual FVector Direction() {return FVector::ZeroVector;}
+	virtual VectorType VecType() {return VectorType::ActorUpVector;}
 	virtual AActor* Target() {return nullptr;}
 };

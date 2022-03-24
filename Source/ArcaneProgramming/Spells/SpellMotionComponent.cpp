@@ -3,20 +3,53 @@
 #include "Gameframework/CharacterMovementComponent.h"
 #include "ArcaneProgramming/Player/MagePlayer.h"
 
-void USpellMotionComponent::AddMotion(FVector Direction)
+void USpellMotionComponent::AddMotion(FVector Direction, VectorType VType)
 {
-	
 	AMagePlayer* Character = Cast<AMagePlayer>(GetOwner());
-	if(Character != nullptr)
+	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
+
+	if(MeshComponent != nullptr)
 	{
-		Character->GetCharacterMovement()->AddImpulse(FMath::Square(200) * FVector::UpVector);
+		if(VType == VectorType::ActorUpVector)
+		{
+			Direction = MeshComponent->GetUpVector();
+		}
+		if(VType == VectorType::ActorForwardVector)
+		{
+			Direction = MeshComponent->GetForwardVector();
+		}
+		if(VType == VectorType::ActorRightVector)
+		{
+			Direction = MeshComponent->GetRightVector();
+		}
 	}
 
-	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
+	if(Character != nullptr)
+	{
+		if(VType == VectorType::ActorUpVector)
+		{
+			Direction = Character->GetActorUpVector();
+		}
+		if(VType == VectorType::ActorForwardVector)
+		{
+			Direction = Character->GetActorForwardVector();
+		}
+		if(VType == VectorType::ActorRightVector)
+		{
+			Direction = Character->GetActorRightVector();
+		}
+	}
+		
+	
+	if(Character != nullptr)
+	{
+	 	Character->GetCharacterMovement()->AddImpulse(FMath::Square(200) * Direction);
+	}
+
 	if(MeshComponent && GetOwner()->IsRootComponentMovable())
 	{
-		FVector Up = FVector::UpVector;
-		MeshComponent->AddImpulse(Up * 500.f * MeshComponent->GetMass());
+
+		MeshComponent->AddImpulse(Direction * 500.f * MeshComponent->GetMass());
 	}
 
 	
