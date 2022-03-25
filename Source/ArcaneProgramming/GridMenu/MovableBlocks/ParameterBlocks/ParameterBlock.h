@@ -10,6 +10,7 @@ class UDragWidget;
 class UGridBlock;
 class UGridMenu;
 
+UENUM()
 enum ParameterType
 {
 	Direction,
@@ -19,13 +20,14 @@ enum ParameterType
 	
 };
 
+UENUM(BlueprintType)
 enum VectorType
 {
 	None,
 	ActorUpVector,
 	ActorRightVector,
 	ActorForwardVector,
-	ActorPosition,
+	ActorPosition ,
 };
 
 UCLASS(Abstract)
@@ -35,7 +37,9 @@ class ARCANEPROGRAMMING_API UParameterBlock : public UUserWidget
 
 public:	
 	ParameterType ParaType;
-	VectorType VType;
+
+	UPROPERTY(EditAnywhere)
+	TEnumAsByte<VectorType> VType;
 	
 	bool PlacedOnGrid = false;
 	bool HasActivated = false;

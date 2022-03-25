@@ -27,5 +27,11 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void IncinerateTarget();
-		
+
+private:
+	float Timer = 0.f;
+	float FireDuration = 10.f;
+
+	UPROPERTY()
+	UParticleSystemComponent* Particlesystem; 
 };

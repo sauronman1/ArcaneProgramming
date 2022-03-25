@@ -4,18 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "ParameterBlock.h"
-#include "ActorUpVector.generated.h"
+#include "ActorDirectionVector.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ARCANEPROGRAMMING_API UActorUpVector : public UParameterBlock
+class ARCANEPROGRAMMING_API UActorDirectionVector : public UParameterBlock
 {
 	GENERATED_BODY()
 	
 public:
-	UActorUpVector();
+	UActorDirectionVector();
 
 	virtual VectorType VecType() override;
 

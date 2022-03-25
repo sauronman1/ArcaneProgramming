@@ -85,10 +85,13 @@ void UFireSpell::ActivateSpell()
 		FireSpellComponent = NewObject<UFireSpellComponent>(Target, UFireSpellComponent::StaticClass());
 		FireSpellComponent->RegisterComponent();
 		FireSpellComponent->PSComponent = FireButton->PSComponent;
-		
+	}
+	else
+	{
+		FireSpellComponent->Activate();	
 	}
 
 	
 	
-	Target->FindComponentByClass<UFireSpellComponent>()->IncinerateTarget();
+	FireSpellComponent->IncinerateTarget();
 }

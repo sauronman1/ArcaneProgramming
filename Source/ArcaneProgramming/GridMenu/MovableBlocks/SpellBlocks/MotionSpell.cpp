@@ -93,7 +93,7 @@ void UMotionSpell::ActivateSpell()
 
 	
 	
-	Target->FindComponentByClass<USpellMotionComponent>()->AddMotion(Direction, VType);
+	SpellMotionComponent->AddMotion(Direction, VType);
 }
 
 

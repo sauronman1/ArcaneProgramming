@@ -1,20 +1,20 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ActorUpVector.h"
+#include "ActorDirectionVector.h"
 
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "ArcaneProgramming/GridMenu/DragWidget.h"
 
-UActorUpVector::UActorUpVector()
+UActorDirectionVector::UActorDirectionVector()
 {
 	ParaType = ParameterType::VectorEnum;
 	VType = VectorType::ActorUpVector;
 }
 
-FReply UActorUpVector::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+FReply UActorDirectionVector::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
 	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
@@ -25,7 +25,7 @@ FReply UActorUpVector::NativeOnMouseButtonDown(const FGeometry& InGeometry, cons
 
 }
 
-void UActorUpVector::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
+void UActorDirectionVector::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
 {
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
 	UDragWidget* DragOperation = NewObject<UDragWidget>();
@@ -33,14 +33,14 @@ void UActorUpVector::NativeOnDragDetected(const FGeometry& InGeometry, const FPo
 	OutOperation = DragOperator(DragOperation);
 }
 
-bool UActorUpVector::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
+bool UActorDirectionVector::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
 {
 	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
 	
 	return true;
 }
 
-VectorType UActorUpVector::VecType()
+VectorType UActorDirectionVector::VecType()
 {
 	
 	return VType;

@@ -7,14 +7,17 @@
   <component name="ChangeListManager">
     <list default="true" id="8bb4ba52-dcfd-4521-9829-d5c08aa2e6df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_ActorUpVector.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_ActorUpVector.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_FireSpellBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_FireSpellBlock.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridBlock.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_ScrollMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_ScrollMenu.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorDirectionVector.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorDirectionVector.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,16 +76,17 @@
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PlayerTarget.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/SpellMotionComponent.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/CustomButton.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/CustomButton.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorDirectionVector.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" />
     </changedPaths>
@@ -339,12 +343,24 @@
       <workItem from="1647887120282" duration="245000" />
       <workItem from="1647935526011" duration="20396000" />
       <workItem from="1648033400505" duration="7304000" />
-      <workItem from="1648124532249" duration="9939000" />
+      <workItem from="1648124532249" duration="10650000" />
+      <workItem from="1648194861725" duration="6875000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

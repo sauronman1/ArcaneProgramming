@@ -34,7 +34,12 @@ void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	Timer += DeltaTime;
+	if(Timer > FireDuration)
+	{
+		Particlesystem->DeactivateSystem();
+		Deactivate();
+	}
 }
 
 void UFireSpellComponent::IncinerateTarget()
@@ -43,13 +48,22 @@ void UFireSpellComponent::IncinerateTarget()
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
 	if(Character != nullptr)
 	{
-		UParticleSystemComponent* Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, Character->GetRootComponent(),NAME_None,   Character->GetActorLocation());
-		Particlesystem->SetRelativeLocation(FVector(0,0,0));
+		
+			Timer = 0;
+
+			Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, Character->GetRootComponent(),NAME_None,   Character->GetActorLocation());
+			Particlesystem->SetRelativeLocation(FVector(0,0,0));
+		
+		
 	}
 	if(MeshComponent != nullptr)
 	{
-		UParticleSystemComponent* Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, MeshComponent,NAME_None, MeshComponent->GetComponentLocation());
-		Particlesystem->SetRelativeLocation(FVector(0,0,0));
+		
+			Timer = 0;
+			Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, MeshComponent,NAME_None, MeshComponent->GetComponentLocation());
+			Particlesystem->SetRelativeLocation(FVector(0,0,0));
+		//TODO Reactivate partticles instead of creating a new one each time
+		
 
 	}
 }
