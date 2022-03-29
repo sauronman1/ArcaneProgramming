@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "ParameterBlock.generated.h"
 
+class UCustomButton;
 class UDragWidget;
 class UGridBlock;
 class UGridMenu;
@@ -43,6 +44,7 @@ public:
 	
 	bool PlacedOnGrid = false;
 	bool HasActivated = false;
+	bool MenuSet = false;
 	int SlotID;
 
 	UPROPERTY()
@@ -53,12 +55,17 @@ public:
 	UUserWidget* SpellBlueprintInstance;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> SpellBlueprint;
+	UPROPERTY(meta = (BindWidget))
+	UCustomButton* CustomParameterButton;
 	
 	UDragWidget* DragOperator(UDragWidget* DragOperation);
+	
 	virtual void UpdateNeighbours();
-
 	virtual FVector Position() {return FVector::ZeroVector;}
 	virtual FVector Direction() {return FVector::ZeroVector;}
 	virtual VectorType VecType() {return VectorType::ActorUpVector;}
 	virtual AActor* Target() {return nullptr;}
+
+	UFUNCTION()
+	void ClickAndDrop();
 };

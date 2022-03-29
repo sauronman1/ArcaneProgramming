@@ -4,26 +4,22 @@
 
 #include "CoreMinimal.h"
 #include "SpellBlock.h"
-#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
-
-#include "MotionSpell.generated.h"
+#include "CreationSpell.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ARCANEPROGRAMMING_API UMotionSpell : public USpellBlock
+class ARCANEPROGRAMMING_API UCreationSpell : public USpellBlock
 {
 	GENERATED_BODY()
-	public:
 
+public:
+	
 	UPROPERTY()
-	AActor* Target;
-	UPROPERTY()
-	FVector Direction;
-
-	VectorType VType = VectorType::None;
-
+	FVector Position;
+	
+private:
 	virtual void NativeConstruct() override;
 	virtual void UpdateNeighbours() override;
 	virtual void ActivateSpell() override;

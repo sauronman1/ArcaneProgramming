@@ -13,5 +13,6 @@ class ARCANEPROGRAMMING_API UCustomButton : public UButton
 public:
 	UPROPERTY(EditAnywhere)
     UParticleSystemComponent* PSComponent;
-	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* Target;
 };

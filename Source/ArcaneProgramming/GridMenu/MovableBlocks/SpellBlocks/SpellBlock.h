@@ -8,6 +8,7 @@
 #include "Blueprint/UserWidget.h"
 #include "SpellBlock.generated.h"
 
+class UCustomButton;
 class UGridBlock;
 class UGridMenu;
 
@@ -19,6 +20,7 @@ public:
 	bool PlacedOnGrid = false;
 	bool HasActivated = false;
 	bool Debbuged = false;
+	bool MenuSet = false;
 	int SlotID;
 
 	UPROPERTY()
@@ -29,8 +31,14 @@ public:
 	UUserWidget* SpellBlueprintInstance;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> SpellBlueprint;
+	UPROPERTY(meta = (BindWidget))
+	UCustomButton* CustomButton;
 	
 	UDragWidget* DragOperator(UDragWidget* DragOperation);
+	
 	virtual void UpdateNeighbours(){}
 	virtual void ActivateSpell() PURE_VIRTUAL(USpellBlock);
+	
+	UFUNCTION()
+    void ClickAndDrop();
 };

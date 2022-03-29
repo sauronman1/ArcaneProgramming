@@ -2,6 +2,7 @@
 
 #include "Coreminimal.h"
 
+#include "CustomButton.h"
 #include "GridMenu.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Image.h"
@@ -17,6 +18,8 @@ public:
 	virtual void NativeConstruct() override;
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
+	bool MenuSet = false;
+	
 	UPROPERTY(VisibleAnywhere)
 	int Left;
 	UPROPERTY(VisibleAnywhere)
@@ -32,8 +35,10 @@ public:
 	UImage* SlotImage;
 	UPROPERTY(meta = (BindWidget))
 	UUniformGridPanel* UniGrid;
-	
+	UPROPERTY(meta = (BindWidget))
+	UCustomButton* CustomGridButton;
+
 	UFUNCTION()
-	void GetPanel();
+	void ClickAndDrop();
 	
 };

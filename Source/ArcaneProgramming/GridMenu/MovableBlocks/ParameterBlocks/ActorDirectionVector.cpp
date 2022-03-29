@@ -7,11 +7,21 @@
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "ArcaneProgramming/GridMenu/DragWidget.h"
+#include "ArcaneProgramming/GridMenu/CustomButton.h"
 
 UActorDirectionVector::UActorDirectionVector()
 {
 	ParaType = ParameterType::VectorEnum;
 	VType = VectorType::ActorUpVector;
+}
+
+void UActorDirectionVector::NativeConstruct()
+{
+	if(!MenuSet)
+	{
+		if(CustomParameterButton){CustomParameterButton->OnClicked.AddDynamic(this, &UParameterBlock::ClickAndDrop);}
+		MenuSet = true;
+	}
 }
 
 FReply UActorDirectionVector::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)

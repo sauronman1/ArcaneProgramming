@@ -11,18 +11,27 @@
 #include "ArcaneProgramming/Spells/FireSpellComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 
-
-FReply UFireSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+void UFireSpell::NativeConstruct()
 {
-	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
-
-	FEventReply Reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
-	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *FireButton->PSComponent->GetName());
-	
-	return Reply.NativeReply;
-
+	if(!MenuSet)
+	{
+		if(CustomButton){CustomButton->OnClicked.AddDynamic(this, &USpellBlock::ClickAndDrop);}
+		MenuSet = true;
+	}
 }
+
+
+// FReply UFireSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+// {
+// 	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
+//
+// 	FEventReply Reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
+// 	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+// 	UE_LOG(LogTemp, Warning, TEXT("%s"), *CustomButton->PSComponent->GetName());
+// 	
+// 	return Reply.NativeReply;
+//
+// }
 
 void UFireSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
 {
@@ -84,7 +93,7 @@ void UFireSpell::ActivateSpell()
 	{
 		FireSpellComponent = NewObject<UFireSpellComponent>(Target, UFireSpellComponent::StaticClass());
 		FireSpellComponent->RegisterComponent();
-		FireSpellComponent->PSComponent = FireButton->PSComponent;
+		FireSpellComponent->PSComponent = CustomButton->PSComponent;
 	}
 	else
 	{
@@ -95,3 +104,5 @@ void UFireSpell::ActivateSpell()
 	
 	FireSpellComponent->IncinerateTarget();
 }
+
+

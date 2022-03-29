@@ -19,15 +19,6 @@ UFireSpellComponent::UFireSpellComponent()
 }
 
 
-// Called when the game starts
-void UFireSpellComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
 
 // Called every frame
 void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -48,22 +39,17 @@ void UFireSpellComponent::IncinerateTarget()
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
 	if(Character != nullptr)
 	{
-		
 			Timer = 0;
-
 			Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, Character->GetRootComponent(),NAME_None,   Character->GetActorLocation());
 			Particlesystem->SetRelativeLocation(FVector(0,0,0));
-		
 		
 	}
 	if(MeshComponent != nullptr)
 	{
-		
 			Timer = 0;
 			Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, MeshComponent,NAME_None, MeshComponent->GetComponentLocation());
 			Particlesystem->SetRelativeLocation(FVector(0,0,0));
 		//TODO Reactivate partticles instead of creating a new one each time
-		
 
 	}
 }

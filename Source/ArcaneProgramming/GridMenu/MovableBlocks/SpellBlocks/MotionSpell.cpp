@@ -3,8 +3,6 @@
 
 #include "MotionSpell.h"
 
-#include "ArcaneProgramming/ArcaneGameModeBase.h"
-#include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
@@ -12,30 +10,16 @@
 #include "ArcaneProgramming/Spells/SpellMotionComponent.h"
 #include "Kismet/GameplayStatics.h"
 
-FReply UMotionSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+void UMotionSpell::NativeConstruct()
 {
-	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
-
-	FEventReply Reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
-	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
-	return Reply.NativeReply;
-
+	if(!MenuSet)
+	{
+		if(CustomButton){CustomButton->OnClicked.AddDynamic(this, &USpellBlock::ClickAndDrop);}
+		MenuSet = true;
+	}
 }
 
-void UMotionSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
-{
-	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
-	UDragWidget* DragOperation = NewObject<UDragWidget>();
-	
-	OutOperation = DragOperator(DragOperation);
-}
 
-bool UMotionSpell::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
-{
-	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
-	
-	return true;
-}
 
 void UMotionSpell::UpdateNeighbours()
 {

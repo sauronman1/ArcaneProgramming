@@ -4,6 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "ArcaneProgramming/MageHud.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 AMagePlayer::AMagePlayer()
 {
@@ -87,6 +88,7 @@ void AMagePlayer::Menu()
 			Player->bShowMouseCursor = true;
 			Player->bEnableClickEvents = true;
 			Player->bEnableMouseOverEvents = true;
+			Player->SetInputMode(FInputModeGameAndUI());
 
 		}
 	}
@@ -99,6 +101,8 @@ void AMagePlayer::Menu()
 			Player->bShowMouseCursor = false;
 			Player->bEnableClickEvents = false;
 			Player->bEnableMouseOverEvents = false;
+			Player->SetInputMode(FInputModeGameOnly());
+
 		}
 	}
 }

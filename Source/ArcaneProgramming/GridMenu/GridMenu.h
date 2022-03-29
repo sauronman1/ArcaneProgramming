@@ -4,6 +4,7 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Components/GridPanel.h"
+#include "MovableBlocks/ParameterBlocks/ParameterBlock.h"
 
 #include "GridMenu.generated.h"
 
@@ -24,8 +25,8 @@ public:
 	UPROPERTY()
 	TMap<int, UWidget*> Slots; 
 	UPROPERTY()
-	USpellBlock* SelectedSpellBlock;
-
+	UUserWidget* SelectedBlock;
+	
 	bool MenuSet = false;
 
 	void SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBlock);

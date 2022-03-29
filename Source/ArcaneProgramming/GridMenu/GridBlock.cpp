@@ -12,15 +12,48 @@
 
 void UGridBlock::NativeConstruct()
 {
-	//gridPanel = Cast<UGridPanel>(GetParent());
-	//if(ButtonObj){ButtonObj->OnClicked.AddDynamic(this, &UGridBlock::GetPanel);}
 
-	//UWidgetBlueprintLibrary::det
+	if(!MenuSet)
+	{
+		if(CustomGridButton){CustomGridButton->OnClicked.AddDynamic(this, &UGridBlock::ClickAndDrop);}
+		MenuSet = true;
+	}
 }
 
-void UGridBlock::GetPanel()
+void UGridBlock::ClickAndDrop()
 {
-	UE_LOG(LogTemp, Warning, TEXT("gjgs"));
+	UGridMenu* GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+	if(GridMenu->SelectedBlock == nullptr)
+	{
+		return;
+	}
+	
+	GridMenu->SelectedBlock->AddToViewport();
+	SlotImage->SetVisibility(ESlateVisibility::HitTestInvisible);
+	UniGrid->AddChildToUniformGrid(GridMenu->SelectedBlock);
+
+	USpellBlock* SpellBlock = Cast<USpellBlock>(GridMenu->SelectedBlock);
+	if(SpellBlock != nullptr)
+	{
+		SpellBlock->PlacedOnGrid = true;
+		SpellBlock->OccupiedSlot = this;
+		SpellBlock->SlotID = SlotID;
+		SpellBlock->GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+	}
+
+	UParameterBlock* ParameterBlock = Cast<UParameterBlock>(GridMenu->SelectedBlock);
+	if(ParameterBlock != nullptr)
+	{
+		ParameterBlock->PlacedOnGrid = true;
+		ParameterBlock->OccupiedSlot = this;
+		ParameterBlock->SlotID = SlotID;
+		ParameterBlock->GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+
+	}
+
+	AArcaneGameModeBase* GameMode = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+	GridMenu->SetSlotInArray(GridMenu->SelectedBlock, SlotID, false);
+	GridMenu->SelectedBlock = nullptr;
 }
 
 bool UGridBlock::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
