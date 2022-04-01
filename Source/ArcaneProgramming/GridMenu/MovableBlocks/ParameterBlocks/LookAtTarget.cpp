@@ -33,6 +33,7 @@ AActor* ULookAtTarget::Target()
 	FVector End = Start + Cast<AMagePlayer>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0))->Cam->GetComponentRotation().Vector() * TraceDistance;
 
 	FCollisionQueryParams TraceParams;
+	
 	bool IsHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
 
 	if(IsHit)
@@ -40,7 +41,6 @@ AActor* ULookAtTarget::Target()
 		DrawDebugLine(GetWorld(), Start, End, FColor::Orange, false, 0.1f);
 		Target = HitResult.GetActor();
 	}
-	
 	//AMagePlayer* Character = Cast<AMagePlayer>(Target);
 	return Target;
 }

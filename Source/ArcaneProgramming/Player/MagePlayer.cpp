@@ -13,7 +13,7 @@ AMagePlayer::AMagePlayer()
 
 	bUseControllerRotationYaw = false;
 	Cam = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Cam->AttachTo(RootComponent);
+	Cam->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	Cam->SetRelativeLocation(FVector(0,0,40));
 }
 
@@ -110,12 +110,33 @@ void AMagePlayer::Menu()
 void AMagePlayer::ActivateSpell()
 {
 	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+
 	for(int i = 0; i<GridMenu->Slots.Num(); i++)
 	{
 		USpellBlock* SpellBlock = Cast<USpellBlock>(GridMenu->Slots[i]);
 		if(SpellBlock != nullptr)
-			SpellBlock->ActivateSpell();
+		{
+			if(SpellBlock->IsPrimary)
+			{
+				SpellBlock->ActivateSpell();
+			}
+		}
 	}
+	
+	for(int i = 0; i<GridMenu->Slots.Num(); i++)
+	{
+		USpellBlock* SpellBlock = Cast<USpellBlock>(GridMenu->Slots[i]);
+		if(SpellBlock != nullptr)
+		{
+			if(!SpellBlock->IsPrimary)
+			{
+				SpellBlock->ActivateSpell();
+			}
+		}
+	}
+	
+
+	
 }
 
 

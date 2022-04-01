@@ -114,7 +114,6 @@ void UGridMenu::SetEmptySlots()
 void UGridMenu::SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBlock)
 {	
 	
-		//TODO change to fit map
 	if(!RemoveBlock)
 	{
 		UGridBlock* CurrentBlock = Cast<UGridBlock>(*Slots.Find(SlotID));

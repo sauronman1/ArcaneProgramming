@@ -18,7 +18,8 @@ enum ParameterType
 	VectorEnum,
 	Position,
 	Actor,
-	
+	Primary,
+
 };
 
 UENUM(BlueprintType)
@@ -28,7 +29,6 @@ enum VectorType
 	ActorUpVector,
 	ActorRightVector,
 	ActorForwardVector,
-	ActorPosition ,
 };
 
 UCLASS(Abstract)

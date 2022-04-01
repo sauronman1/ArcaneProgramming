@@ -3,13 +3,10 @@
 
 #include "PlayerTarget.h"
 
-#include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"
-#include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/Player/MagePlayer.h"
-#include "Gameframework/CharacterMovementComponent.h"
 
 UPlayerTarget::UPlayerTarget()
 {

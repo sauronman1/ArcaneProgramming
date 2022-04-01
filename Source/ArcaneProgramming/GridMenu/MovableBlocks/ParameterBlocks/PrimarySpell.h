@@ -4,17 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "ParameterBlock.h"
-#include "PlayerTarget.generated.h"
+#include "PrimarySpell.generated.h"
 
+/**
+ * 
+ */
 UCLASS()
-class ARCANEPROGRAMMING_API UPlayerTarget : public UParameterBlock
+class ARCANEPROGRAMMING_API UPrimarySpell : public UParameterBlock
 {
 	GENERATED_BODY()
 public:
-
-	UPlayerTarget();
-	
-	virtual AActor* Target() override;
+	UPrimarySpell();
+private:
 	virtual void NativeConstruct() override;
 
 };

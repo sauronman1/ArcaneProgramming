@@ -1,16 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MotionSpell.h"
-
-#include "Blueprint/WidgetBlueprintLibrary.h"
+#include "VelocitySpell.h"
+#include "ArcaneProgramming/GridMenu/CustomButton.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
-#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
-#include "ArcaneProgramming/Player/MagePlayer.h"
-#include "ArcaneProgramming/Spells/SpellMotionComponent.h"
-#include "Kismet/GameplayStatics.h"
+#include "ArcaneProgramming/Spells/VelocitySpellComponent.h"
 
-void UMotionSpell::NativeConstruct()
+
+void UVelocitySpell::NativeConstruct()
 {
 	if(!MenuSet)
 	{
@@ -21,7 +18,7 @@ void UMotionSpell::NativeConstruct()
 
 
 
-void UMotionSpell::UpdateNeighbours()
+void UVelocitySpell::UpdateNeighbours()
 {
 	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
 
@@ -59,7 +56,7 @@ void UMotionSpell::UpdateNeighbours()
 	
 }
 
-void UMotionSpell::ActivateSpell()
+void UVelocitySpell::ActivateSpell()
 {
 	UpdateNeighbours();
 	
@@ -68,19 +65,14 @@ void UMotionSpell::ActivateSpell()
 		return;
 	}
 
-	USpellMotionComponent* SpellMotionComponent = Target->FindComponentByClass<USpellMotionComponent>();
-	if(SpellMotionComponent == nullptr)
+	UVelocitySpellComponent* VelocitySpellComponent = Target->FindComponentByClass<UVelocitySpellComponent>();
+	if(VelocitySpellComponent == nullptr)
 	{
-		SpellMotionComponent = NewObject<USpellMotionComponent>(Target, USpellMotionComponent::StaticClass());
-		SpellMotionComponent->RegisterComponent();
+		VelocitySpellComponent = NewObject<UVelocitySpellComponent>(Target, UVelocitySpellComponent::StaticClass());
+		VelocitySpellComponent->RegisterComponent();
 	}
+
 	
-	SpellMotionComponent->AddMotion(Direction, VType);
+	
+	VelocitySpellComponent->ActivateVelocity(Direction, VType);
 }
-
-
-
-
-
-
-

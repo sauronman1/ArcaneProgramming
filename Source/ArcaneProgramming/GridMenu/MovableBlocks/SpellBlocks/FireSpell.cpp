@@ -20,34 +20,6 @@ void UFireSpell::NativeConstruct()
 	}
 }
 
-
-// FReply UFireSpell::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
-// {
-// 	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
-//
-// 	FEventReply Reply = UWidgetBlueprintLibrary::DetectDragIfPressed(InMouseEvent, this, EKeys::LeftMouseButton);
-// 	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
-// 	UE_LOG(LogTemp, Warning, TEXT("%s"), *CustomButton->PSComponent->GetName());
-// 	
-// 	return Reply.NativeReply;
-//
-// }
-
-void UFireSpell::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent, UDragDropOperation*& OutOperation)
-{
-	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
-	UDragWidget* DragOperation = NewObject<UDragWidget>();
-	
-	OutOperation = DragOperator(DragOperation);
-}
-
-bool UFireSpell::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
-{
-	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
-	
-	return true;
-}
-
 void UFireSpell::UpdateNeighbours()
 {
 	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};

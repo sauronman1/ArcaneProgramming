@@ -28,7 +28,11 @@ void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	Timer += DeltaTime;
 	if(Timer > FireDuration)
 	{
-		Particlesystem->DeactivateSystem();
+		if(!ensure(Particlesystem != nullptr))
+		{
+			return;
+		}
+ 		Particlesystem->DeactivateSystem();
 		Deactivate();
 	}
 }

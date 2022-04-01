@@ -5,18 +5,12 @@
 #include "CoreMinimal.h"
 #include "SpellBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
+#include "VelocitySpell.generated.h"
 
-#include "MotionSpell.generated.h"
-
-/**
- * 
- */
 UCLASS()
-class ARCANEPROGRAMMING_API UMotionSpell : public USpellBlock
+class ARCANEPROGRAMMING_API UVelocitySpell : public USpellBlock
 {
 	GENERATED_BODY()
-	public:
-
 	UPROPERTY()
 	FVector Direction;
 

@@ -3,8 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
-#include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "SpellBlock.generated.h"
 
@@ -18,11 +16,12 @@ class ARCANEPROGRAMMING_API USpellBlock : public UUserWidget
 	GENERATED_BODY()
 public:
 	bool PlacedOnGrid = false;
-	bool HasActivated = false;
-	bool Debbuged = false;
 	bool MenuSet = false;
+	bool IsPrimary = false;
 	int SlotID;
 
+	UPROPERTY(EditAnywhere)
+	bool Targetable = false;
 	UPROPERTY()
 	UGridBlock* OccupiedSlot;	
 	UPROPERTY()
@@ -33,9 +32,12 @@ public:
 	TSubclassOf<UUserWidget> SpellBlueprint;
 	UPROPERTY(meta = (BindWidget))
 	UCustomButton* CustomButton;
-	
-	UDragWidget* DragOperator(UDragWidget* DragOperation);
-	
+
+	UPROPERTY()
+	AActor* Target;
+	UPROPERTY()
+	AActor* SpellTarget;
+		
 	virtual void UpdateNeighbours(){}
 	virtual void ActivateSpell() PURE_VIRTUAL(USpellBlock);
 	

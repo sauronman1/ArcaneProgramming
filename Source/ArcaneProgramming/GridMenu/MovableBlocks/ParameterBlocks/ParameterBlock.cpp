@@ -19,7 +19,6 @@ UDragWidget* UParameterBlock::DragOperator(UDragWidget* DragOperation)
 		OccupiedSlot->SlotImage->SetVisibility(ESlateVisibility::Visible);
 		OccupiedSlot = nullptr;
 	 	
-		//TODO if needed, make an invisible background widget to handle anything dropped outside the menu
 	}
 
 	if(!PlacedOnGrid)
@@ -52,9 +51,9 @@ void UParameterBlock::UpdateNeighbours()
 			if(SpellBlock != nullptr)
 				SpellBlock->UpdateNeighbours();
 
-			UParameterBlock* ParameterBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
-			if(ParameterBlock != nullptr)
-				ParameterBlock->UpdateNeighbours();
+			// UParameterBlock* ParameterBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
+			// if(ParameterBlock != nullptr)
+			// 	ParameterBlock->UpdateNeighbours();
 			
 		}
 	}

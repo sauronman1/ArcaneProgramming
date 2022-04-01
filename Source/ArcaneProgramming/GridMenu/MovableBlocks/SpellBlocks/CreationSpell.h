@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "SpellBlock.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
+
 #include "CreationSpell.generated.h"
 
 /**
@@ -15,9 +17,8 @@ class ARCANEPROGRAMMING_API UCreationSpell : public USpellBlock
 	GENERATED_BODY()
 
 public:
-	
-	UPROPERTY()
-	FVector Position;
+
+	VectorType DirectionToSpawnRelativeToSpawner = VectorType::None;
 	
 private:
 	virtual void NativeConstruct() override;
