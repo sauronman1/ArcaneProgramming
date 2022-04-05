@@ -4,15 +4,15 @@
 
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "Components/ActorComponent.h"
-#include "SpellMotionComponent.generated.h"
+#include "MotionSpellComponent.generated.h"
 
 UCLASS(BlueprintType, Meta=(BlueprintSpawnableComponent))
-class USpellMotionComponent : public UActorComponent
+class UMotionSpellComponent : public UActorComponent
 {
 	GENERATED_BODY()
 public:
 	
 	
 
-	void AddMotion(FVector Direction, VectorType VType);
+	void AddMotion(FVector Direction, float Amplifier, VectorType VType);
 };

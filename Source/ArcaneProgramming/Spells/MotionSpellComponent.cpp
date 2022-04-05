@@ -1,9 +1,9 @@
-#include "SpellMotionComponent.h"
+#include "MotionSpellComponent.h"
 
 #include "Gameframework/CharacterMovementComponent.h"
 #include "ArcaneProgramming/Player/MagePlayer.h"
 
-void USpellMotionComponent::AddMotion(FVector Direction, VectorType VType)
+void UMotionSpellComponent::AddMotion(FVector Direction, float Amplifier, VectorType VType)
 {
 	AMagePlayer* Character = Cast<AMagePlayer>(GetOwner());
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
@@ -43,13 +43,13 @@ void USpellMotionComponent::AddMotion(FVector Direction, VectorType VType)
 	
 	if(Character != nullptr)
 	{
-	 	Character->GetCharacterMovement()->AddImpulse(FMath::Square(200) * Direction);
+	 	Character->GetCharacterMovement()->AddImpulse(FMath::Square(Amplifier) * Direction);
 	}
 
 	if(MeshComponent && GetOwner()->IsRootComponentMovable())
 	{
 
-		MeshComponent->AddImpulse(Direction * 500.f * MeshComponent->GetMass());
+		MeshComponent->AddImpulse(Direction * Amplifier * MeshComponent->GetMass());
 	}
 
 	

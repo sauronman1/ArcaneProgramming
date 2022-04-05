@@ -71,6 +71,7 @@ void UCreationSpell::ActivateSpell()
 	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetSimulatePhysics(true);
 	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetEnableGravity(false);
 	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetLinearDamping(1.f);
+	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetRelativeScale3D(FVector(0.2f, 0.2f,0.2f));
 	SpellTarget = NewMesh;
 	
 	UCreationSpellComponent* CreationSpellComponent = NewMesh->FindComponentByClass<UCreationSpellComponent>();

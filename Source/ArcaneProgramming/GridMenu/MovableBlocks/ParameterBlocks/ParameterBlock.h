@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/EditableText.h"
+
 #include "ParameterBlock.generated.h"
 
 class UCustomButton;
@@ -46,6 +48,7 @@ public:
 	bool HasActivated = false;
 	bool MenuSet = false;
 	int SlotID;
+	float Amplifier;
 
 	UPROPERTY()
 	UGridBlock* OccupiedSlot;	
@@ -57,9 +60,7 @@ public:
 	TSubclassOf<UUserWidget> SpellBlueprint;
 	UPROPERTY(meta = (BindWidget))
 	UCustomButton* CustomParameterButton;
-	
-	UDragWidget* DragOperator(UDragWidget* DragOperation);
-	
+		
 	virtual void UpdateNeighbours();
 	virtual FVector Position() {return FVector::ZeroVector;}
 	virtual FVector Direction() {return FVector::ZeroVector;}

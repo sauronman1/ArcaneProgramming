@@ -104,6 +104,8 @@ void AMagePlayer::Menu()
 			Player->SetInputMode(FInputModeGameOnly());
 
 		}
+		Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu->UpdateNeigboursOnAllNodes();
+
 	}
 }
 

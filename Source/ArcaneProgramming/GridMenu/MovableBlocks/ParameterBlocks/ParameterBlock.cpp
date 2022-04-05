@@ -6,38 +6,8 @@
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "ArcaneProgramming/GridMenu/GridMenu.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
-#include "ArcaneProgramming/GridMenu/DragWidget.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h"
 #include "Kismet/GameplayStatics.h"
-
-UDragWidget* UParameterBlock::DragOperator(UDragWidget* DragOperation)
-{
-	if(OccupiedSlot != nullptr)
-	{
-		GridMenu->SetSlotInArray(OccupiedSlot, OccupiedSlot->SlotID, true);
-		OccupiedSlot->UniGrid->RemoveChild(this);
-		OccupiedSlot->SlotImage->SetVisibility(ESlateVisibility::Visible);
-		OccupiedSlot = nullptr;
-	 	
-	}
-
-	if(!PlacedOnGrid)
-	{
-		
-		SpellBlueprintInstance = CreateWidget(GetWorld(), SpellBlueprint);
-		DragOperation->DefaultDragVisual = SpellBlueprintInstance;
-		DragOperation->WidgetReference = SpellBlueprintInstance;
-		
-	}
-	else
-	{
-		DragOperation->DefaultDragVisual = this;
-		DragOperation->WidgetReference = this;
-		PlacedOnGrid = false;
-	}
-
-	return DragOperation;
-}
 
 void UParameterBlock::UpdateNeighbours()
 {
@@ -47,14 +17,11 @@ void UParameterBlock::UpdateNeighbours()
 	{
 		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
 		{
-			USpellBlock* SpellBlock = Cast<USpellBlock>(*GridMenu->Slots.Find(Neighbour));
-			if(SpellBlock != nullptr)
-				SpellBlock->UpdateNeighbours();
-
-			// UParameterBlock* ParameterBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
-			// if(ParameterBlock != nullptr)
-			// 	ParameterBlock->UpdateNeighbours();
-			
+			USpellBlock* TargetBlock = Cast<USpellBlock>(*GridMenu->Slots.Find(Neighbour));
+			if(TargetBlock != nullptr)
+			{
+				TargetBlock->UpdateNeighbours();
+			}
 		}
 	}
 }
@@ -74,3 +41,5 @@ void UParameterBlock::ClickAndDrop()
 	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
 	GridMenu->SelectedBlock = CreateWidget(GetWorld(), SpellBlueprint);
 }
+
+

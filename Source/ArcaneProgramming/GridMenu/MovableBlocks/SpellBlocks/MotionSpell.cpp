@@ -7,7 +7,7 @@
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "ArcaneProgramming/Player/MagePlayer.h"
-#include "ArcaneProgramming/Spells/SpellMotionComponent.h"
+#include "ArcaneProgramming/Spells/MotionSpellComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 void UMotionSpell::NativeConstruct()
@@ -39,10 +39,12 @@ void UMotionSpell::UpdateNeighbours()
 				if(TargetBlock->ParaType == ParameterType::Direction)
 				{
 					Direction = TargetBlock->Direction();
+					Amplifier = TargetBlock->Amplifier;
 				}
 				if(TargetBlock->ParaType == ParameterType::VectorEnum)
 				{
-					VType = TargetBlock->VType; 
+					VType = TargetBlock->VType;
+					Amplifier = TargetBlock->Amplifier;
 				}
 			}
 
@@ -62,20 +64,20 @@ void UMotionSpell::UpdateNeighbours()
 void UMotionSpell::ActivateSpell()
 {
 	UpdateNeighbours();
-	
+
 	if(Target == nullptr)
 	{
 		return;
 	}
 
-	USpellMotionComponent* SpellMotionComponent = Target->FindComponentByClass<USpellMotionComponent>();
+	UMotionSpellComponent* SpellMotionComponent = Target->FindComponentByClass<UMotionSpellComponent>();
 	if(SpellMotionComponent == nullptr)
 	{
-		SpellMotionComponent = NewObject<USpellMotionComponent>(Target, USpellMotionComponent::StaticClass());
+		SpellMotionComponent = NewObject<UMotionSpellComponent>(Target, UMotionSpellComponent::StaticClass());
 		SpellMotionComponent->RegisterComponent();
 	}
 	
-	SpellMotionComponent->AddMotion(Direction, VType);
+	SpellMotionComponent->AddMotion(Direction, Amplifier, VType);
 }
 
 

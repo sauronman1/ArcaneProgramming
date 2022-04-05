@@ -31,4 +31,5 @@ public:
 
 	void SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBlock);
 	void SetEmptySlots();
+	void UpdateNeigboursOnAllNodes();
 };

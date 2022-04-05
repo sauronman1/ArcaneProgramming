@@ -1,7 +1,4 @@
 #include "GridMenu.h"
-
-#include <ThirdParty/PhysX3/PxShared/src/foundation/include/PsArray.h>
-
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "GridBlock.h"
@@ -150,3 +147,16 @@ void UGridMenu::SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBloc
 		UE_LOG(LogTemp, Warning, TEXT("%s %d"), *Slots[i]->GetName(), i);
 }
 
+void UGridMenu::UpdateNeigboursOnAllNodes()
+{
+	for(int i = 0; i<Slots.Num(); i++)
+	{
+		UParameterBlock* ParameterBlock = Cast<UParameterBlock>(Slots[i]);
+		if(ParameterBlock != nullptr)
+			ParameterBlock->UpdateNeighbours();
+
+		USpellBlock* SpellBlock = Cast<USpellBlock>(Slots[i]);
+		if(SpellBlock != nullptr)
+			SpellBlock->UpdateNeighbours();
+	}
+}

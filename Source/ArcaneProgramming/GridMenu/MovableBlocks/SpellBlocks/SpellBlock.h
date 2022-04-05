@@ -19,7 +19,8 @@ public:
 	bool MenuSet = false;
 	bool IsPrimary = false;
 	int SlotID;
-
+	float Amplifier;
+	
 	UPROPERTY(EditAnywhere)
 	bool Targetable = false;
 	UPROPERTY()
