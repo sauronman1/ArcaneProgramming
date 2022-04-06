@@ -32,18 +32,24 @@ void UVelocitySpellComponent::TickComponent(float DeltaTime, ELevelTick TickType
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	Timer += DeltaTime;
-	if(Timer < FireDuration)
+	if(Timer < SpellDuration)
 	{
 		AddVelocity(DeltaTime);
 	}
+	else
+	{
+		
+	}
 }
 
-void UVelocitySpellComponent::ActivateVelocity(FVector InDirection, VectorType VType)
+void UVelocitySpellComponent::ActivateVelocity(FVector InDirection, const float Duration, float Amplifier,  VectorType VType)
 {
 	Character = Cast<AMagePlayer>(GetOwner());
 	MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
-
+	SpellDuration = Duration;
 	Direction = InDirection;
+	SpeedAmplifier = Amplifier;
+	Timer = 0;
 	
 	if(MeshComponent != nullptr)
 	{
@@ -76,18 +82,6 @@ void UVelocitySpellComponent::ActivateVelocity(FVector InDirection, VectorType V
 			Direction = Character->Cam->GetRightVector();
 		}
 	}
-		
-	
-	if(Character != nullptr)
-	{
-		//Character->GetCharacterMovement()->
-	}
-	else if(MeshComponent && GetOwner()->IsRootComponentMovable())
-	{
-		Timer = 0;
-		MeshComponent->AddForce(Direction * 100.f * MeshComponent->GetMass());
-		//MeshComponent->AddImpulse(Direction * 500.f * MeshComponent->GetMass());
-	}
 }
 
 void UVelocitySpellComponent::AddVelocity(float DeltaTime)
@@ -98,9 +92,7 @@ void UVelocitySpellComponent::AddVelocity(float DeltaTime)
 	}
 	else if(MeshComponent && GetOwner()->IsRootComponentMovable())
 	{
-		Timer = 0;
-		MeshComponent->GetOwner()->AddActorWorldOffset(Direction * DeltaTime * 100.f);
-		
+		MeshComponent->GetOwner()->AddActorWorldOffset(Direction * DeltaTime * SpeedAmplifier);
 	}
 }
 

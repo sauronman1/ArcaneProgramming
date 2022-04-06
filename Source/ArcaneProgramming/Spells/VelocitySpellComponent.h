@@ -13,6 +13,7 @@ class AMagePlayer;
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class ARCANEPROGRAMMING_API UVelocitySpellComponent : public UActorComponent
 {
+	//TODO Try checking for all variables that can be made const
 	GENERATED_BODY()
 
 public:	
@@ -20,7 +21,7 @@ public:
 	
 	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	void ActivateVelocity(FVector InDirection, VectorType VType);
+	void ActivateVelocity(FVector InDirection, float Duration, float Amplifier, VectorType VType);
 	void AddVelocity(float DeltaTime);
 	
 private:
@@ -31,5 +32,7 @@ private:
 
 	FVector Direction;
 	float Timer = 0.f;
-	float FireDuration = 5.f;
+	float SpellDuration;
+	float SpeedAmplifier;
+
 };

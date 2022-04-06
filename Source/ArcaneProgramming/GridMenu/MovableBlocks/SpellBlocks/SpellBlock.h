@@ -20,6 +20,7 @@ public:
 	bool IsPrimary = false;
 	int SlotID;
 	float Amplifier;
+	float SpellDuration;
 	
 	UPROPERTY(EditAnywhere)
 	bool Targetable = false;

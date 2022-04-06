@@ -18,38 +18,40 @@ void UCreationSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	Timer += DeltaTime;
-	if(Timer > FireDuration)
+	if(Timer > SpellDuration)
 	{
 		GetOwner()->Destroy();
 	}
 }
 
-void UCreationSpellComponent::SetPosition(AActor* TargetSpawner, VectorType DirectionToSpawnRelativeToSpawner)
+void UCreationSpellComponent::SetPosition(AActor* TargetSpawner, float Duration, float DistanceFromCreationOrigin, VectorType DirectionToSpawnRelativeToSpawner)
 {
 	AMagePlayer* Character = Cast<AMagePlayer>(TargetSpawner);
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(TargetSpawner->GetRootComponent());
 
 	FVector SpawnPosition;
 	FRotator SpawnRotation;
+	SpellDuration = Duration;
+	
 	if(MeshComponent != nullptr)
 	{
 		
 		if(DirectionToSpawnRelativeToSpawner == VectorType::ActorUpVector)
 		{
 			SpawnPosition = MeshComponent->GetComponentLocation();
-			SpawnPosition += MeshComponent->GetUpVector() * 500.f;
+			SpawnPosition += MeshComponent->GetUpVector() * DistanceFromCreationOrigin;
 			GetOwner()->SetActorLocation(SpawnPosition);
 		}
 		if(DirectionToSpawnRelativeToSpawner == VectorType::ActorForwardVector)
 		{
 			SpawnPosition = MeshComponent->GetComponentLocation();
-			SpawnPosition += MeshComponent->GetForwardVector() * 500.f;
+			SpawnPosition += MeshComponent->GetForwardVector() * DistanceFromCreationOrigin;
 			GetOwner()->SetActorLocation(SpawnPosition);
 		}
 		if(DirectionToSpawnRelativeToSpawner == VectorType::ActorRightVector)
 		{
 			SpawnPosition = MeshComponent->GetComponentLocation();
-			SpawnPosition += MeshComponent->GetRightVector() * 500.f;
+			SpawnPosition += MeshComponent->GetRightVector() * DistanceFromCreationOrigin;
 			GetOwner()->SetActorLocation(SpawnPosition);
 		}
 		SpawnRotation = MeshComponent->GetComponentRotation();
@@ -61,19 +63,19 @@ void UCreationSpellComponent::SetPosition(AActor* TargetSpawner, VectorType Dire
 		if(DirectionToSpawnRelativeToSpawner == VectorType::ActorUpVector)
 		{
 			SpawnPosition = Character->Cam->GetComponentLocation();
-			SpawnPosition += Character->Cam->GetUpVector() * 500.f;
+			SpawnPosition += Character->Cam->GetUpVector() * DistanceFromCreationOrigin;
 			GetOwner()->SetActorLocation(SpawnPosition);
 		}
 		if(DirectionToSpawnRelativeToSpawner == VectorType::ActorForwardVector)
 		{
 			SpawnPosition = Character->Cam->GetComponentLocation();
-			SpawnPosition += Character->Cam->GetForwardVector() * 500.f;
+			SpawnPosition += Character->Cam->GetForwardVector() * DistanceFromCreationOrigin;
 			GetOwner()->SetActorLocation(SpawnPosition);
 		}
 		if(DirectionToSpawnRelativeToSpawner == VectorType::ActorRightVector)
 		{
 			SpawnPosition = Character->Cam->GetComponentLocation();
-			SpawnPosition += Character->Cam->GetRightVector() * 500.f;
+			SpawnPosition += Character->Cam->GetRightVector() * DistanceFromCreationOrigin;
 			GetOwner()->SetActorLocation(SpawnPosition);
 			
 		}

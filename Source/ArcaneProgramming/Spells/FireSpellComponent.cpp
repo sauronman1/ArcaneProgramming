@@ -11,11 +11,7 @@
 // Sets default values for this component's properties
 UFireSpellComponent::UFireSpellComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -32,15 +28,18 @@ void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 		{
 			return;
 		}
+		//TODO Add overlapcomponent and resize it depending on parameterblock size
  		Particlesystem->DeactivateSystem();
 		Deactivate();
 	}
 }
 
-void UFireSpellComponent::IncinerateTarget()
+void UFireSpellComponent::IncinerateTarget(float Duration)
 {
 	AMagePlayer* Character = Cast<AMagePlayer>(GetOwner());
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
+	FireDuration = Duration;
+	
 	if(Character != nullptr)
 	{
 			Timer = 0;

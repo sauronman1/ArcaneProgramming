@@ -19,9 +19,9 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void SetPosition(AActor* TargetSpawner, VectorType DirectionToSpawnRelativeToSpawner);
+	void SetPosition(AActor* TargetSpawner, float Duration, float DistanceFromCreationOrigin,  VectorType DirectionToSpawnRelativeToSpawner);
 	
 private:
 	float Timer = 0.f;
-	float FireDuration = 3.f;
+	float SpellDuration = 3.f;
 };

@@ -15,7 +15,6 @@ void UGridMenu::NativeConstruct()
 		MenuSet = true;
 	}
 	
-	//TODO Make a primary block or slot on menu to help set a spell as primary spell
 }
 
 

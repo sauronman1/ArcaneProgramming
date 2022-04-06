@@ -11,12 +11,20 @@ UCLASS()
 class ARCANEPROGRAMMING_API UVelocitySpell : public USpellBlock
 {
 	GENERATED_BODY()
-	UPROPERTY()
-	FVector Direction;
-
-	VectorType VType = VectorType::None;
+	
 
 	virtual void NativeConstruct() override;
 	virtual void UpdateNeighbours() override;
 	virtual void ActivateSpell() override;
+
+private:
+	UPROPERTY(meta = (BindWidget))
+	UEditableText* SpellDurationBox;
+	UPROPERTY()
+	FVector Direction;
+	
+	VectorType VType = VectorType::None;
+
+	UFUNCTION()
+	void SetSpellDuration(const FText& Text, ETextCommit::Type type);
 };

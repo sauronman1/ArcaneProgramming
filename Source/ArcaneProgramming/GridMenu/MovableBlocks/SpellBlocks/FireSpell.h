@@ -8,6 +8,7 @@
 
 #include "FireSpell.generated.h"
 
+class UEditableText;
 class UParticleSystemComponent;
 
 UCLASS()
@@ -16,10 +17,14 @@ class ARCANEPROGRAMMING_API UFireSpell : public USpellBlock
 	GENERATED_BODY()
 
 	
-private:
+public:
 	virtual void NativeConstruct() override;
 	virtual void UpdateNeighbours() override;
 	virtual void ActivateSpell() override;
+private:
+	UPROPERTY(meta = (BindWidget))
+	UEditableText* SpellDurationBox;
 
-	
+	UFUNCTION()
+	void SetSpellDuration(const FText& Text, ETextCommit::Type type);
 };

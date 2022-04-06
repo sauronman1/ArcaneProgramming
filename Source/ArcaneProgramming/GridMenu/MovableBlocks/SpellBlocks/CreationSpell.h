@@ -17,11 +17,16 @@ class ARCANEPROGRAMMING_API UCreationSpell : public USpellBlock
 	GENERATED_BODY()
 
 public:
-
-	VectorType DirectionToSpawnRelativeToSpawner = VectorType::None;
-	
-private:
 	virtual void NativeConstruct() override;
 	virtual void UpdateNeighbours() override;
 	virtual void ActivateSpell() override;
+	
+private:
+	VectorType DirectionToSpawnRelativeToSpawner = VectorType::None;
+
+	UPROPERTY(meta = (BindWidget))
+	UEditableText* SpellDurationBox;
+	
+	UFUNCTION()
+	void SetSpellDuration(const FText& Text, ETextCommit::Type type);
 };

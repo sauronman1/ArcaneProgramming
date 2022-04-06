@@ -15,14 +15,15 @@ UCLASS()
 class ARCANEPROGRAMMING_API UMotionSpell : public USpellBlock
 {
 	GENERATED_BODY()
-	public:
-
-	UPROPERTY()
-	FVector Direction;
-
-	VectorType VType = VectorType::None;
+public:
 
 	virtual void NativeConstruct() override;
 	virtual void UpdateNeighbours() override;
 	virtual void ActivateSpell() override;
+
+private:
+	FVector Direction;
+	VectorType VType = VectorType::None;
+	
+	
 };

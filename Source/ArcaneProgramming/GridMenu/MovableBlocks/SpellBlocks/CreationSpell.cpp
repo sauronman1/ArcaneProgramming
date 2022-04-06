@@ -15,6 +15,7 @@ void UCreationSpell::NativeConstruct()
 	if(!MenuSet)
 	{
 		if(CustomButton){CustomButton->OnClicked.AddDynamic(this, &USpellBlock::ClickAndDrop);}
+		if(SpellDurationBox){SpellDurationBox->OnTextCommitted.AddDynamic(this, &UCreationSpell::SetSpellDuration);}
 		MenuSet = true;
 	}
 }
@@ -38,7 +39,8 @@ void UCreationSpell::UpdateNeighbours()
 				}
 				if(TargetBlock->ParaType == ParameterType::VectorEnum)
 				{
-					DirectionToSpawnRelativeToSpawner = TargetBlock->VType; 
+					DirectionToSpawnRelativeToSpawner = TargetBlock->VType;
+					Amplifier = TargetBlock->Amplifier;
 				}
 			}
 
@@ -95,6 +97,23 @@ void UCreationSpell::ActivateSpell()
 		}
 	}
 	
-	CreationSpellComponent->SetPosition(Target, DirectionToSpawnRelativeToSpawner);
+	CreationSpellComponent->SetPosition(Target, SpellDuration, Amplifier, DirectionToSpawnRelativeToSpawner);
 	
+}
+
+void UCreationSpell::SetSpellDuration(const FText& Text, ETextCommit::Type type)
+{
+	if(SpellDurationBox->GetText().IsNumeric())
+	{
+		SpellDuration = FCString::Atof(*SpellDurationBox->GetText().ToString());
+		
+		const FString InputText = FString::SanitizeFloat(SpellDuration);
+		const FText FText = FText::FromString(InputText);
+		
+		SpellDurationBox->SetText(FText);
+	}
+	else
+	{
+		SpellDuration = 1;
+	}
 }

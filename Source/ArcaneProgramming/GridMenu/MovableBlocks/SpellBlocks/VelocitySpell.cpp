@@ -12,6 +12,8 @@ void UVelocitySpell::NativeConstruct()
 	if(!MenuSet)
 	{
 		if(CustomButton){CustomButton->OnClicked.AddDynamic(this, &USpellBlock::ClickAndDrop);}
+		if(SpellDurationBox){SpellDurationBox->OnTextCommitted.AddDynamic(this, &UVelocitySpell::SetSpellDuration);}
+
 		MenuSet = true;
 	}
 }
@@ -39,7 +41,8 @@ void UVelocitySpell::UpdateNeighbours()
 				}
 				if(TargetBlock->ParaType == ParameterType::VectorEnum)
 				{
-					VType = TargetBlock->VType; 
+					VType = TargetBlock->VType;
+					Amplifier = TargetBlock->Amplifier;
 				}
 			}
 
@@ -74,5 +77,22 @@ void UVelocitySpell::ActivateSpell()
 
 	
 	
-	VelocitySpellComponent->ActivateVelocity(Direction, VType);
+	VelocitySpellComponent->ActivateVelocity(Direction, SpellDuration, Amplifier, VType);
+}
+
+void UVelocitySpell::SetSpellDuration(const FText& Text, ETextCommit::Type type)
+{
+	if(SpellDurationBox->GetText().IsNumeric())
+	{
+		SpellDuration = FCString::Atof(*SpellDurationBox->GetText().ToString());
+		
+		const FString InputText = FString::SanitizeFloat(SpellDuration);
+		const FText FText = FText::FromString(InputText);
+		
+		SpellDurationBox->SetText(FText);
+	}
+	else
+	{
+		SpellDuration = 1;
+	}
 }
