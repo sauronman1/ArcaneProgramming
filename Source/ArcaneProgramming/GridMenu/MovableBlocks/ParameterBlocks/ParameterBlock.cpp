@@ -3,6 +3,7 @@
 
 #include "ParameterBlock.h"
 
+#include "PipeBlock.h"
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "ArcaneProgramming/GridMenu/GridMenu.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
@@ -35,6 +36,12 @@ void UParameterBlock::ClickAndDrop()
 		OccupiedSlot->SlotImage->SetVisibility(ESlateVisibility::Visible);
 		OccupiedSlot = nullptr;
 
+		UPipeBlock* PipeBlock = Cast<UPipeBlock>(this);
+		if(PipeBlock != nullptr)
+		{
+			PipeBlock->NextNode = nullptr;
+			PipeBlock->PreviousNode = nullptr;
+		}
 		//TODO if needed, make an invisible background widget to handle anything dropped outside the menu
 	}
 	

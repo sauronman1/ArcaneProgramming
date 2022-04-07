@@ -12,6 +12,8 @@
 UFireSpellComponent::UFireSpellComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
+
+	
 }
 
 
@@ -39,6 +41,13 @@ void UFireSpellComponent::IncinerateTarget(float Duration)
 	AMagePlayer* Character = Cast<AMagePlayer>(GetOwner());
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
 	FireDuration = Duration;
+
+	// SphereComponent = NewObject<USphereComponent>();
+	// GetOwner()->SetRootComponent(SphereComponent);
+	//
+	// SphereComponent->SetRelativeLocation(FVector(0,0,0));
+	// SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &UFireSpellComponent::HandleBeginOverlap);
+	// SphereComponent->OnComponentEndOverlap.AddDynamic(this, &UFireSpellComponent::HandleEndOverlap);
 	
 	if(Character != nullptr)
 	{
@@ -55,6 +64,17 @@ void UFireSpellComponent::IncinerateTarget(float Duration)
 		//TODO Reactivate partticles instead of creating a new one each time
 
 	}
+}
+
+void UFireSpellComponent::HandleBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 BodyIndex, bool bFromSweep, const FHitResult& SweepHit)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Enter"));
+}
+
+void UFireSpellComponent::HandleEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 BodyIndex)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Exit"));
+
 }
 
 

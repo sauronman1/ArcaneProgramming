@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Components/SphereComponent.h"
+
 #include "FireSpellComponent.generated.h"
 
 
@@ -28,5 +30,12 @@ private:
 	float FireDuration = 10.f;
 
 	UPROPERTY()
-	UParticleSystemComponent* Particlesystem; 
+	USphereComponent* SphereComponent;
+	UPROPERTY()
+	UParticleSystemComponent* Particlesystem;
+	
+	UFUNCTION()
+	void HandleBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 BodyIndex, bool bFromSweep, const FHitResult& SweepHit);
+	UFUNCTION()
+	void HandleEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 BodyIndex);
 };
