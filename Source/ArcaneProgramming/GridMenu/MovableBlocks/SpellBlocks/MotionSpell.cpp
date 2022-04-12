@@ -6,6 +6,7 @@
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h"
 #include "ArcaneProgramming/Player/MagePlayer.h"
 #include "ArcaneProgramming/Spells/MotionSpellComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -21,45 +22,31 @@ void UMotionSpell::NativeConstruct()
 
 
 
-void UMotionSpell::UpdateNeighbours()
+
+
+void UMotionSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 {
-	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
-
-	for (int Neighbour : Neighbours)
+	if(ParameterBlock != nullptr)
 	{
-		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
+		if(ParameterBlock->ParaType == ParameterType::Actor)
 		{
-			UParameterBlock* TargetBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
-			if(TargetBlock != nullptr)
-			{
-				if(TargetBlock->ParaType == ParameterType::Actor)
-				{
-					Target = TargetBlock->Target();
-				}
-				if(TargetBlock->ParaType == ParameterType::Direction)
-				{
-					Direction = TargetBlock->Direction();
-					Amplifier = TargetBlock->Amplifier;
-				}
-				if(TargetBlock->ParaType == ParameterType::VectorEnum)
-				{
-					VType = TargetBlock->VType;
-					Amplifier = TargetBlock->Amplifier;
-				}
-			}
-
-			
+			Target = ParameterBlock->Target();
 		}
-
-		
+		if(ParameterBlock->ParaType == ParameterType::Direction)
+		{
+			Direction = ParameterBlock->Direction();
+			Amplifier = ParameterBlock->Amplifier;
+		}
+		if(ParameterBlock->ParaType == ParameterType::VectorEnum)
+		{
+			VType = ParameterBlock->VType;
+			Amplifier = ParameterBlock->Amplifier;
+		}
+		if(ParameterBlock->ParaType == ParameterType::Primary && Neighbour == OccupiedSlot->Down)
+			IsPrimary = true;
 	}
-
-	if(Target == nullptr)
-	{
-		//Change to Error material
-	}
-	
 }
+
 
 void UMotionSpell::ActivateSpell()
 {

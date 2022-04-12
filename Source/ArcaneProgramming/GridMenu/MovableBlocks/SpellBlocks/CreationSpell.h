@@ -18,7 +18,7 @@ class ARCANEPROGRAMMING_API UCreationSpell : public USpellBlock
 
 public:
 	virtual void NativeConstruct() override;
-	virtual void UpdateNeighbours() override;
+	virtual void SetParameters(UParameterBlock* ParameterBlock, int Neighbour) override;
 	virtual void ActivateSpell() override;
 	
 private:

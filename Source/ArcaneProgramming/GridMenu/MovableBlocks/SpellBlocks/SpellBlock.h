@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "SpellBlock.generated.h"
 
+class UParameterBlock;
 class UCustomButton;
 class UGridBlock;
 class UGridMenu;
@@ -13,6 +14,8 @@ class UGridMenu;
 UCLASS(Abstract)
 class ARCANEPROGRAMMING_API USpellBlock : public UUserWidget
 {
+	//Todo Attempt to merge Parameter and Spell Blocks to Movable blocks
+
 	GENERATED_BODY()
 public:
 	bool PlacedOnGrid = false;
@@ -40,7 +43,8 @@ public:
 	UPROPERTY()
 	AActor* SpellTarget;
 		
-	virtual void UpdateNeighbours(){}
+	virtual void UpdateNeighbours();
+	virtual void SetParameters(UParameterBlock* ParameterBlock, int Neighbour){}
 	virtual void ActivateSpell() PURE_VIRTUAL(USpellBlock);
 	
 	UFUNCTION()

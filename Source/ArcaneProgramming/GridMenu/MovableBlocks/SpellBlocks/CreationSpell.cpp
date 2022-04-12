@@ -22,47 +22,24 @@ void UCreationSpell::NativeConstruct()
 
 
 
-void UCreationSpell::UpdateNeighbours()
+void UCreationSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 {
-	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
-
-	for (int Neighbour : Neighbours)
+	if(ParameterBlock != nullptr)
 	{
-		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
+		if(ParameterBlock->ParaType == ParameterType::Actor)
 		{
-			UParameterBlock* TargetBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
-			if(TargetBlock != nullptr)
-			{
-				if(TargetBlock->ParaType == ParameterType::Actor)
-				{
-					Target = TargetBlock->Target();
-				}
-				if(TargetBlock->ParaType == ParameterType::VectorEnum)
-				{
-					DirectionToSpawnRelativeToSpawner = TargetBlock->VType;
-					Amplifier = TargetBlock->Amplifier;
-				}
-			}
-
-			
+			Target = ParameterBlock->Target();
 		}
-
-		
-	}
-
-	if(OccupiedSlot->Down >= 0 && OccupiedSlot->Down < GridMenu->Slots.Num())
-	{
-		UParameterBlock* TargetBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(OccupiedSlot->Down));
-		if(TargetBlock != nullptr)
+		if(ParameterBlock->ParaType == ParameterType::VectorEnum)
 		{
-			if(TargetBlock->ParaType == ParameterType::Primary)
-				IsPrimary = true;
+			DirectionToSpawnRelativeToSpawner = ParameterBlock->VType;
+			Amplifier = ParameterBlock->Amplifier;
 		}
-
-			
+		if(ParameterBlock->ParaType == ParameterType::Primary && Neighbour == OccupiedSlot->Down)
+			IsPrimary = true;
 	}
-	
 }
+
 
 void UCreationSpell::ActivateSpell()
 {

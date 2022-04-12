@@ -14,7 +14,7 @@ class ARCANEPROGRAMMING_API UVelocitySpell : public USpellBlock
 	
 
 	virtual void NativeConstruct() override;
-	virtual void UpdateNeighbours() override;
+	virtual void SetParameters(UParameterBlock* ParameterBlock, int Neighbour) override;
 	virtual void ActivateSpell() override;
 
 private:

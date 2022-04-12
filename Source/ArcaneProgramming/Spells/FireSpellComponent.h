@@ -27,7 +27,8 @@ public:
 
 private:
 	float Timer = 0.f;
-	float FireDuration = 10.f;
+	float DamageTimer = 0.f;
+	float FireDuration = 0.f;
 
 	UPROPERTY()
 	USphereComponent* SphereComponent;
@@ -35,7 +36,5 @@ private:
 	UParticleSystemComponent* Particlesystem;
 	
 	UFUNCTION()
-	void HandleBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 BodyIndex, bool bFromSweep, const FHitResult& SweepHit);
-	UFUNCTION()
-	void HandleEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 BodyIndex);
+	void HandleCollision();
 };

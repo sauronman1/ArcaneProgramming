@@ -15,6 +15,15 @@ class ARCANEPROGRAMMING_API UPipeBlock : public UParameterBlock
 	GENERATED_BODY()
 
 public:
+	UPROPERTY()
+	UWidget* PreviousNode;
+	UPROPERTY()
+	UWidget* NextNode;
+
+	virtual void NativeConstruct() override;
+	virtual void UpdateNeighbours() override;
+	void SetNextAndPrevious(UWidget* TargetBlock);
+private:
 	UPROPERTY(EditAnywhere)
 	bool HasNorth;
 	UPROPERTY(EditAnywhere)
@@ -23,13 +32,4 @@ public:
 	bool HasEast;
 	UPROPERTY(EditAnywhere)
 	bool HasWest;
-	
-	UPROPERTY()
-	UWidget* PreviousNode;
-	UPROPERTY()
-	UWidget* NextNode;
-
-	virtual void UpdateNeighbours() override;
-private:
-	
 };

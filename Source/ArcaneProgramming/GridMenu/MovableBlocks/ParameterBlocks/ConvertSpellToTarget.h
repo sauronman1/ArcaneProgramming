@@ -21,5 +21,6 @@ public:
 
 	virtual void NativeConstruct() override;
 	virtual void UpdateNeighbours() override;
+	virtual void SetSpells(USpellBlock* SpellBlock, int Neighbour) override;
 	virtual AActor* Target() override; 
 };

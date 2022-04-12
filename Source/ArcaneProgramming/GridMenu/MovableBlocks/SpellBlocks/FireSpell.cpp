@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h"
 #include "ArcaneProgramming/Spells/FireSpellComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -22,36 +23,21 @@ void UFireSpell::NativeConstruct()
 	}
 }
 
-void UFireSpell::UpdateNeighbours()
+
+
+void UFireSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 {
-	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
-
-	for (int Neighbour : Neighbours)
+	if(ParameterBlock != nullptr)
 	{
-		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
+		if(ParameterBlock->ParaType == ParameterType::Actor)
 		{
-			UParameterBlock* TargetBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
-			if(TargetBlock != nullptr)
-			{
-				if(TargetBlock->ParaType == ParameterType::Actor)
-				{
-					Target = TargetBlock->Target();
-				}
-				
-			}
-
-			
+			Target = ParameterBlock->Target();
 		}
-
-		
+		if(ParameterBlock->ParaType == ParameterType::Primary && Neighbour == OccupiedSlot->Down)
+			IsPrimary = true;
 	}
-
-	if(Target == nullptr)
-	{
-		//Change to Error material
-	}
-	
 }
+
 
 void UFireSpell::ActivateSpell()
 {
@@ -71,7 +57,7 @@ void UFireSpell::ActivateSpell()
 	}
 	else
 	{
-		FireSpellComponent->Activate();	
+		FireSpellComponent->SetComponentTickEnabled(true);	
 	}
 
 	

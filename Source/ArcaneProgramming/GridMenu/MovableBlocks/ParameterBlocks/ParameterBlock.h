@@ -8,6 +8,7 @@
 
 #include "ParameterBlock.generated.h"
 
+class USpellBlock;
 class UCustomButton;
 class UDragWidget;
 class UGridBlock;
@@ -16,6 +17,7 @@ class UGridMenu;
 UENUM()
 enum ParameterType
 {
+	Pipe,
 	Direction,
 	VectorEnum,
 	Position,
@@ -62,6 +64,7 @@ public:
 	UCustomButton* CustomParameterButton;
 		
 	virtual void UpdateNeighbours();
+	virtual void SetSpells(USpellBlock* SpellBlock, int Neighbour){}
 	virtual FVector Position() {return FVector::ZeroVector;}
 	virtual FVector Direction() {return FVector::ZeroVector;}
 	virtual VectorType VecType() {return VectorType::ActorUpVector;}
