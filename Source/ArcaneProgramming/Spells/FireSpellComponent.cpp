@@ -39,8 +39,10 @@ void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 			return;
 		}
 		//TODO Add overlapcomponent and resize it depending on parameterblock size
+		IgnoreActors.Empty();
  		Particlesystem->DeactivateSystem();
 		SetComponentTickEnabled(false);
+
 	}
 }
 
@@ -75,10 +77,11 @@ void UFireSpellComponent::HandleCollision()
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
 
 	TArray<TEnumAsByte<EObjectTypeQuery>> TraceObjectTypes;
-	TraceObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldStatic));
+	
 	TraceObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
+	TraceObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_PhysicsBody));
+
 	TArray<AActor*> OverlappedActors;
-	TArray<AActor*> IgnoreActors;
 
 	if(Character != nullptr)
 	{
@@ -86,9 +89,31 @@ void UFireSpellComponent::HandleCollision()
 	}
 	if(MeshComponent != nullptr)
 	{
-		UKismetSystemLibrary::SphereOverlapActors(GetWorld(), MeshComponent->GetComponentLocation(), FMath::Square(20), TraceObjectTypes, nullptr, IgnoreActors, OverlappedActors);		
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("We HEar YoU %s"), *OverlappedActors[0]->GetName()));
+		UKismetSystemLibrary::SphereOverlapActors(GetWorld(), MeshComponent->GetComponentLocation(), FMath::Square(20), TraceObjectTypes, nullptr, IgnoreActors, OverlappedActors);
+
+		for (auto OverlappedActor : OverlappedActors)
+		{
+			if(OverlappedActor != GetOwner())
+			{
+				UFireSpellComponent* FireSpellComponent = OverlappedActor->FindComponentByClass<UFireSpellComponent>();
+				if(FireSpellComponent == nullptr)
+				{
+					FireSpellComponent = NewObject<UFireSpellComponent>(OverlappedActor, UFireSpellComponent::StaticClass());
+					FireSpellComponent->RegisterComponent();
+					FireSpellComponent->PSComponent = PSComponent;
+				}
+				else
+				{
+					FireSpellComponent->SetComponentTickEnabled(true);	
+				}
+
+				FireSpellComponent->IncinerateTarget(FireDuration);
+				FireSpellComponent->IgnoreActors.Add(GetOwner());
+				IgnoreActors.Add(OverlappedActor);
+				
+			}
+		}
+		
 		DrawDebugSphere(GetWorld(), MeshComponent->GetComponentLocation(), FMath::Square(20), 6, FColor::Red, false, 3.f);
 	}
 

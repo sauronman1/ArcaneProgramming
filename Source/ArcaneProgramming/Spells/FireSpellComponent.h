@@ -20,10 +20,13 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystemComponent* PSComponent;
+	UPROPERTY()
+	TArray<AActor*> IgnoreActors;
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void IncinerateTarget(float Duration);
+	
 
 private:
 	float Timer = 0.f;
@@ -34,7 +37,7 @@ private:
 	USphereComponent* SphereComponent;
 	UPROPERTY()
 	UParticleSystemComponent* Particlesystem;
-	
+
 	UFUNCTION()
 	void HandleCollision();
 };

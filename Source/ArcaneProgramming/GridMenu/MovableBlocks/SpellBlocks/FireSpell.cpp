@@ -60,8 +60,6 @@ void UFireSpell::ActivateSpell()
 		FireSpellComponent->SetComponentTickEnabled(true);	
 	}
 
-	
-	
 	FireSpellComponent->IncinerateTarget(SpellDuration);
 }
 
