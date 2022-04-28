@@ -19,67 +19,6 @@ void UParameterBlock::UpdateNeighbours()
 	{
 		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
 		{
-			UPipeBlock* PipeBlock = Cast<UPipeBlock>(*GridMenu->Slots.Find(Neighbour));
-			if(PipeBlock != nullptr)
-			{
-				PipeBlock->SetNextAndPrevious(this);
-				if(PipeBlock->NextNode == this)
-				{
-					CurrentNode = PipeBlock->PreviousNode;
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->PreviousNode);
-				}
-				else
-				{
-					CurrentNode = PipeBlock->NextNode;
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->NextNode);
-				}
-
-				LastPipe = PipeBlock;
-				
-				if(CurrentNode != nullptr)
-				{
-					USpellBlock* TargetBlock = Cast<USpellBlock>(CurrentNode);
-					if(TargetBlock != nullptr)
-					{
-						TargetBlock->UpdateNeighbours();
-					}
-					
-					
-				}
-			}
-			while(PipeBlock != nullptr)
-			{
-
-				if(PipeBlock->NextNode == LastPipe)
-				{//TODO Turn this to function, to avoid Redundancy
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->PreviousNode);
-					if(PipeBlock == nullptr)
-					{
-						CurrentNode = LastPipe->PreviousNode;
-					}
-				}
-				else
-				{
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->NextNode);
-					if(PipeBlock == nullptr)
-					{
-						CurrentNode = LastPipe->NextNode;
-					}
-				}
-
-				LastPipe = PipeBlock;
-
-				if(CurrentNode != nullptr)
-				{
-					USpellBlock* TargetBlock = Cast<USpellBlock>(CurrentNode);
-					if(TargetBlock != nullptr)
-					{
-						TargetBlock->UpdateNeighbours();
-					}
-					
-					
-				}
-			}
 			
 			USpellBlock* TargetBlock = Cast<USpellBlock>(*GridMenu->Slots.Find(Neighbour));
 			if(TargetBlock != nullptr)
@@ -88,6 +27,8 @@ void UParameterBlock::UpdateNeighbours()
 			}
 		}
 	}
+
+	GridMenu->ShowManaCost();
 }
 
 void UParameterBlock::ClickAndDrop()

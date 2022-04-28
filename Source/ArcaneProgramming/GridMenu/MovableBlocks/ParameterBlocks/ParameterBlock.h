@@ -23,6 +23,7 @@ enum ParameterType
 	Position,
 	Actor,
 	Primary,
+	Converter,
 
 };
 

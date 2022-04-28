@@ -3,6 +3,7 @@
 
 #include "MotionSpell.h"
 
+#include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
@@ -44,13 +45,15 @@ void UMotionSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 		}
 		if(ParameterBlock->ParaType == ParameterType::Primary && Neighbour == OccupiedSlot->Down)
 			IsPrimary = true;
+		if(ParameterBlock->ParaType == ParameterType::Converter && Neighbour != OccupiedSlot->Right)
+            Target = ParameterBlock->Target();
 	}
 }
 
 
 void UMotionSpell::ActivateSpell()
 {
-	UpdateNeighbours();
+	Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu->UpdateNeigboursOnAllNodes();
 
 	if(Target == nullptr)
 	{

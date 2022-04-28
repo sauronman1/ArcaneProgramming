@@ -3,12 +3,14 @@
 
 #include "CreationSpell.h"
 
+#include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "ArcaneProgramming/GridMenu/CustomButton.h"
 #include "ArcaneProgramming/GridMenu/GridMenu.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/Spells/CreationSpellComponent.h"
 #include "Engine/StaticMeshActor.h"
+#include "Kismet/GameplayStatics.h"
 
 void UCreationSpell::NativeConstruct()
 {
@@ -37,18 +39,20 @@ void UCreationSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbou
 		}
 		if(ParameterBlock->ParaType == ParameterType::Primary && Neighbour == OccupiedSlot->Down)
 			IsPrimary = true;
+		if(ParameterBlock->ParaType == ParameterType::Converter && Neighbour != OccupiedSlot->Right)
+			Target = ParameterBlock->Target();
 	}
 }
 
 
 void UCreationSpell::ActivateSpell()
 {
-	UpdateNeighbours();
+	Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu->UpdateNeigboursOnAllNodes();
+
 	AStaticMeshActor* NewMesh = GetWorld()->SpawnActor<AStaticMeshActor>(FVector(0, 0, 0), FRotator(0, 0, 0));
 	NewMesh->SetMobility(EComponentMobility::Movable);
 	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetStaticMesh(CustomButton->Target->GetStaticMesh());
 	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetSimulatePhysics(true);
-	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetEnableGravity(false);
 	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetLinearDamping(1.f);
 	NewMesh->FindComponentByClass<UStaticMeshComponent>()->SetRelativeScale3D(FVector(0.2f, 0.2f,0.2f));
 	SpellTarget = NewMesh;

@@ -4,17 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "SpellBlock.h"
-#include "ArcaneProgramming/GridMenu/CustomButton.h"
-#include "FireSpell.generated.h"
+#include "Components/CheckBox.h"
+
+#include "GravitySpell.generated.h"
 
 class UEditableText;
 
 UCLASS()
-class ARCANEPROGRAMMING_API UFireSpell : public USpellBlock
+class ARCANEPROGRAMMING_API UGravitySpell : public USpellBlock
 {
 	GENERATED_BODY()
-
-	
 public:
 	virtual void NativeConstruct() override;
 	virtual void SetParameters(UParameterBlock* ParameterBlock, int Neighbour) override;
@@ -22,8 +21,13 @@ public:
 private:
 	UPROPERTY(meta = (BindWidget))
 	UEditableText* SpellDurationBox;
+	UPROPERTY(meta = (BindWidget))
+	UCheckBox* RemoveGravityBox;
 
+	bool RemoveGravity;
+	
 	UFUNCTION()
 	void SetSpellDuration(const FText& Text, ETextCommit::Type type);
-	
+	UFUNCTION()
+	void SetGravity(bool CheckedState);
 };

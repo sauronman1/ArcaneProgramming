@@ -10,7 +10,7 @@
 
 UConvertSpellToTarget::UConvertSpellToTarget()
 {
-	ParaType = ParameterType::Actor;
+	ParaType = ParameterType::Converter;
 }
 
 void UConvertSpellToTarget::NativeConstruct()
@@ -25,9 +25,8 @@ void UConvertSpellToTarget::NativeConstruct()
 void UConvertSpellToTarget::UpdateNeighbours()
 {
 	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
-	UPipeBlock* LastPipe = nullptr;
-	UWidget* CurrentNode = nullptr;
-	
+	TargetFound = false;
+
 	for (int Neighbour : Neighbours)
 	{
 		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
@@ -35,52 +34,11 @@ void UConvertSpellToTarget::UpdateNeighbours()
 			UPipeBlock* PipeBlock = Cast<UPipeBlock>(*GridMenu->Slots.Find(Neighbour));
 			if(PipeBlock != nullptr)
 			{
-				PipeBlock->SetNextAndPrevious(this);
-				if(PipeBlock->NextNode == this)
+				for (auto PipeNeighbour : PipeBlock->Neighbours)
 				{
-					CurrentNode = PipeBlock->PreviousNode;
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->PreviousNode);
-				}
-				else
-				{
-					CurrentNode = PipeBlock->NextNode;
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->NextNode);
-				}
+					if(PipeNeighbour == SlotID)
+						SetSpells(PipeBlock->HeadNode, Neighbour);
 
-				LastPipe = PipeBlock;
-
-				if(CurrentNode != nullptr)
-				{
-					SetSpells(Cast<USpellBlock>(CurrentNode), Neighbour);
-					
-				}
-			}
-			while(PipeBlock != nullptr)
-			{
-
-				if(PipeBlock->NextNode == LastPipe)
-				{
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->PreviousNode);
-					if(PipeBlock == nullptr)
-					{
-						CurrentNode = LastPipe->PreviousNode;
-					}
-				}
-				else
-				{
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->NextNode);
-					if(PipeBlock == nullptr)
-					{
-						CurrentNode = LastPipe->NextNode;
-					}
-				}
-
-				LastPipe = PipeBlock;
-
-				if(CurrentNode != nullptr)
-				{
-					SetSpells(Cast<USpellBlock>(CurrentNode), Neighbour);
-					
 				}
 			}
 			
@@ -88,19 +46,30 @@ void UConvertSpellToTarget::UpdateNeighbours()
 			
 		}
 	}
+
+	GridMenu->ShowManaCost();
 }
 
 void UConvertSpellToTarget::SetSpells(USpellBlock* SpellBlock, int Neighbour)
 {
-	if(SpellBlock != nullptr && SpellBlock->Targetable)
+	if(SpellBlock != nullptr && SpellBlock->Targetable && Neighbour == OccupiedSlot->Left)
 	{
 		SpellTarget = SpellBlock->SpellTarget;
+		TargetFound = true;
 		SpellBlock->UpdateNeighbours();
 	}
-	else if(SpellBlock != nullptr)
+
+	if(SpellBlock != nullptr)
 	{
 		SpellBlock->UpdateNeighbours();
 	}
+
+	if(!TargetFound)
+		ParameterImage->SetBrushFromTexture(ErrorTexture);
+	else
+		ParameterImage->SetBrushFromTexture(ParameterTexture);
+
+	
 }
 
 

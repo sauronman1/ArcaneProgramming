@@ -74,6 +74,7 @@ void AMagePlayer::VertiRot(float value)
 	}
 }
 
+//Showing/Hiding spellprogrammer menu
 void AMagePlayer::Menu()
 {
 	MenuOn = !MenuOn;
@@ -112,7 +113,13 @@ void AMagePlayer::Menu()
 void AMagePlayer::ActivateSpell()
 {
 	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+	
+	if(GridMenu->ManaCost > GridMenu->ManaPool)
+	{
+		return;
+	}
 
+	//Activating all primarySpells first
 	for(int i = 0; i<GridMenu->Slots.Num(); i++)
 	{
 		USpellBlock* SpellBlock = Cast<USpellBlock>(GridMenu->Slots[i]);
@@ -124,7 +131,8 @@ void AMagePlayer::ActivateSpell()
 			}
 		}
 	}
-	
+
+	//Activating all non-primary spells after activating primary spells.
 	for(int i = 0; i<GridMenu->Slots.Num(); i++)
 	{
 		USpellBlock* SpellBlock = Cast<USpellBlock>(GridMenu->Slots[i]);

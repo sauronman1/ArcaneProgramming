@@ -6,6 +6,7 @@
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "ArcaneProgramming/GridMenu/GridMenu.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ConvertSpellToTarget.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -28,9 +29,8 @@ void USpellBlock::ClickAndDrop()
 void USpellBlock::UpdateNeighbours()
 {
 	TArray<int> Neighbours = {OccupiedSlot->Right, OccupiedSlot->Up, OccupiedSlot->Left, OccupiedSlot->Down};
-	UPipeBlock* LastPipe = nullptr;
-	UWidget* CurrentNode = nullptr;
-	
+	TargetFound = false;
+
 	for (int Neighbour : Neighbours)
 	{
 		if(Neighbour >= 0 && Neighbour < GridMenu->Slots.Num())
@@ -38,62 +38,17 @@ void USpellBlock::UpdateNeighbours()
 			UPipeBlock* PipeBlock = Cast<UPipeBlock>(*GridMenu->Slots.Find(Neighbour));
 			if(PipeBlock != nullptr)
 			{
-				PipeBlock->SetNextAndPrevious(this);
-				if(PipeBlock->NextNode == this)
+				for (auto PipeNeighbour : PipeBlock->Neighbours)
 				{
-					CurrentNode = PipeBlock->PreviousNode;
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->PreviousNode);
-				}
-				else
-				{
-					CurrentNode = PipeBlock->NextNode;
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->NextNode);
-				}
+					if(PipeNeighbour == SlotID)
+						SetParameters(PipeBlock->TailNode, Neighbour);
 
-				LastPipe = PipeBlock;
-
-				if(CurrentNode != nullptr)
-				{
-					SetParameters(Cast<UParameterBlock>(CurrentNode), Neighbour);
-					
 				}
 			}
-			while(PipeBlock != nullptr)
-			{
-
-				if(PipeBlock->NextNode == LastPipe)
-				{
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->PreviousNode);
-					if(PipeBlock == nullptr)
-					{
-						CurrentNode = LastPipe->PreviousNode;
-					}
-				}
-				else
-				{
-					PipeBlock = Cast<UPipeBlock>(PipeBlock->NextNode);
-					if(PipeBlock == nullptr)
-					{
-						CurrentNode = LastPipe->NextNode;
-					}
-				}
-
-				LastPipe = PipeBlock;
-
-				if(CurrentNode != nullptr)
-				{
-					SetParameters(Cast<UParameterBlock>(CurrentNode), Neighbour);
-					
-				}
-			}
-			
-			
+			VerifySpell(Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour)));
 			SetParameters(Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour)), Neighbour);
 
-			
 		}
-
-		
 	}
 
 	if(OccupiedSlot->Down >= 0 && OccupiedSlot->Down < GridMenu->Slots.Num())
@@ -101,10 +56,24 @@ void USpellBlock::UpdateNeighbours()
 		UParameterBlock* TargetBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(OccupiedSlot->Down));
 		SetParameters(Cast<UParameterBlock>(*GridMenu->Slots.Find(OccupiedSlot->Down)), OccupiedSlot->Down);
 	}
-
-	if(Target == nullptr)
-	{
-		//Change to Error material
-	}
 	
+	GridMenu->ShowManaCost();
+}
+
+void USpellBlock::VerifySpell(UParameterBlock* ParameterBlock)
+{
+	if(!TargetFound)
+		SpellImage->SetBrushFromTexture(ErrorTexture);
+
+
+	if(ParameterBlock != nullptr)
+	{
+		if(ParameterBlock->ParaType == ParameterType::Actor || ParameterBlock->ParaType == ParameterType::Converter)
+		{
+			SpellImage->SetBrushFromTexture(SpellTexture);
+			TargetFound = true;
+		}
+		
+	}
+
 }

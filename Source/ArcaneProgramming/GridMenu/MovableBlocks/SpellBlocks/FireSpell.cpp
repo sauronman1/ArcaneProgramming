@@ -27,6 +27,7 @@ void UFireSpell::NativeConstruct()
 
 void UFireSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 {
+	
 	if(ParameterBlock != nullptr)
 	{
 		if(ParameterBlock->ParaType == ParameterType::Actor)
@@ -35,13 +36,15 @@ void UFireSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 		}
 		if(ParameterBlock->ParaType == ParameterType::Primary && Neighbour == OccupiedSlot->Down)
 			IsPrimary = true;
+		if(ParameterBlock->ParaType == ParameterType::Converter && Neighbour != OccupiedSlot->Right)
+			Target = ParameterBlock->Target();
 	}
 }
 
 
 void UFireSpell::ActivateSpell()
 {
-	UpdateNeighbours();
+	Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu->UpdateNeigboursOnAllNodes();
 	
 	if(Target == nullptr)
 	{

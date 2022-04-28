@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Image.h"
+
 #include "SpellBlock.generated.h"
 
 class UParameterBlock;
@@ -21,6 +23,7 @@ public:
 	bool PlacedOnGrid = false;
 	bool MenuSet = false;
 	bool IsPrimary = false;
+	bool TargetFound = false;
 	int SlotID;
 	float Amplifier;
 	float SpellDuration;
@@ -35,15 +38,22 @@ public:
 	UUserWidget* SpellBlueprintInstance;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> SpellBlueprint;
+	UPROPERTY(EditAnywhere)
+	UTexture2D* ErrorTexture;
+	UPROPERTY(EditAnywhere)
+	UTexture2D* SpellTexture;
 	UPROPERTY(meta = (BindWidget))
 	UCustomButton* CustomButton;
-
+	UPROPERTY(meta = (BindWidget))
+	UImage* SpellImage;
+	
 	UPROPERTY()
 	AActor* Target;
 	UPROPERTY()
 	AActor* SpellTarget;
 		
 	virtual void UpdateNeighbours();
+	virtual void VerifySpell(UParameterBlock* ParameterBlock);
 	virtual void SetParameters(UParameterBlock* ParameterBlock, int Neighbour){}
 	virtual void ActivateSpell() PURE_VIRTUAL(USpellBlock);
 	

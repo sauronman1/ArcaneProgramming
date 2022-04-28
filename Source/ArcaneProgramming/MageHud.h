@@ -19,9 +19,13 @@ class ARCANEPROGRAMMING_API AMageHud : public AHUD
 	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UUserWidget> UIHud;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UUserWidget> CrosshairHud;
 	UPROPERTY()
 	UUserWidget* UIHudInstance;
-
+	UPROPERTY()
+	UUserWidget* CrosshairHudInstance;
+	
 	void MenuOn();
 	void MenuOff();
 };

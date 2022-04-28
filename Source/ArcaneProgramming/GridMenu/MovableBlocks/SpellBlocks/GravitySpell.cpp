@@ -1,45 +1,30 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
-#include "VelocitySpell.h"
+#include "GravitySpell.h"
 
 #include "ArcaneProgramming/ArcaneGameModeBase.h"
 #include "ArcaneProgramming/GridMenu/CustomButton.h"
+#include "Components/EditableText.h"
+#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
-#include "ArcaneProgramming/Spells/VelocitySpellComponent.h"
+#include "ArcaneProgramming/Spells/AntiGravitySpellComponent.h"
 #include "Kismet/GameplayStatics.h"
 
-
-void UVelocitySpell::NativeConstruct()
+void UGravitySpell::NativeConstruct()
 {
 	if(!MenuSet)
 	{
 		if(CustomButton){CustomButton->OnClicked.AddDynamic(this, &USpellBlock::ClickAndDrop);}
-		if(SpellDurationBox){SpellDurationBox->OnTextCommitted.AddDynamic(this, &UVelocitySpell::SetSpellDuration);}
-
+		if(SpellDurationBox){SpellDurationBox->OnTextCommitted.AddDynamic(this, &UGravitySpell::SetSpellDuration);}
+		if(RemoveGravityBox){RemoveGravityBox->OnCheckStateChanged.AddDynamic(this, &UGravitySpell::SetGravity);}
 		MenuSet = true;
 	}
 }
 
-
-
-void UVelocitySpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
+void UGravitySpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 {
 	if(ParameterBlock != nullptr)
 	{
 		if(ParameterBlock->ParaType == ParameterType::Actor)
-		{
 			Target = ParameterBlock->Target();
-		}
-		if(ParameterBlock->ParaType == ParameterType::Direction)
-		{
-			Direction = ParameterBlock->Direction();
-		}
-		if(ParameterBlock->ParaType == ParameterType::VectorEnum)
-		{
-			VType = ParameterBlock->VType;
-			Amplifier = ParameterBlock->Amplifier;
-		}
 		if(ParameterBlock->ParaType == ParameterType::Primary && Neighbour == OccupiedSlot->Down)
 			IsPrimary = true;
 		if(ParameterBlock->ParaType == ParameterType::Converter && Neighbour != OccupiedSlot->Right)
@@ -47,8 +32,7 @@ void UVelocitySpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbou
 	}
 }
 
-
-void UVelocitySpell::ActivateSpell()
+void UGravitySpell::ActivateSpell()
 {
 	Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu->UpdateNeigboursOnAllNodes();
 	
@@ -57,19 +41,21 @@ void UVelocitySpell::ActivateSpell()
 		return;
 	}
 
-	UVelocitySpellComponent* VelocitySpellComponent = Target->FindComponentByClass<UVelocitySpellComponent>();
-	if(VelocitySpellComponent == nullptr)
+	UAntiGravitySpellComponent* GravitySpell = Target->FindComponentByClass<UAntiGravitySpellComponent>();
+	if(GravitySpell == nullptr)
 	{
-		VelocitySpellComponent = NewObject<UVelocitySpellComponent>(Target, UVelocitySpellComponent::StaticClass());
-		VelocitySpellComponent->RegisterComponent();
+		GravitySpell = NewObject<UAntiGravitySpellComponent>(Target, UAntiGravitySpellComponent::StaticClass());
+		GravitySpell->RegisterComponent();
 	}
-
+	else
+	{
+		GravitySpell->SetComponentTickEnabled(true);	
+	}
 	
-	
-	VelocitySpellComponent->ActivateVelocity(Direction, SpellDuration, Amplifier, VType);
+	GravitySpell->RemoveTargetGravity(SpellDuration, RemoveGravity);
 }
 
-void UVelocitySpell::SetSpellDuration(const FText& Text, ETextCommit::Type type)
+void UGravitySpell::SetSpellDuration(const FText& Text, ETextCommit::Type type)
 {
 	if(SpellDurationBox->GetText().IsNumeric())
 	{
@@ -84,4 +70,9 @@ void UVelocitySpell::SetSpellDuration(const FText& Text, ETextCommit::Type type)
 	{
 		SpellDuration = 1;
 	}
+}
+
+void UGravitySpell::SetGravity(bool CheckedState)
+{
+	RemoveGravity = CheckedState;
 }

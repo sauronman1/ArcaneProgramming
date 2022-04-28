@@ -7,7 +7,6 @@
 #include "ArcaneProgramming/Player/MagePlayer.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
-#include "Particles/ParticleSystem.h"
 
 // Sets default values for this component's properties
 UFireSpellComponent::UFireSpellComponent()
@@ -48,6 +47,7 @@ void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 
 void UFireSpellComponent::IncinerateTarget(float Duration)
 {
+	//TODO Still burns indefinetily when overlapping same tartget by different flames
 	AMagePlayer* Character = Cast<AMagePlayer>(GetOwner());
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
 	FireDuration = Duration;

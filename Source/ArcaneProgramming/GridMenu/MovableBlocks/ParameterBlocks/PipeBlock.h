@@ -19,10 +19,20 @@ public:
 	UWidget* PreviousNode;
 	UPROPERTY()
 	UWidget* NextNode;
+	UPROPERTY()
+	USpellBlock* HeadNode;
+	UPROPERTY()
+	UParameterBlock* TailNode;
 
+	UPROPERTY()
+	TArray<int> Neighbours;
+	
 	virtual void NativeConstruct() override;
 	virtual void UpdateNeighbours() override;
 	void SetNextAndPrevious(UWidget* TargetBlock);
+	void SetHeadForAll(USpellBlock* TargetBlock);
+	void SetTailForAll(UParameterBlock* TargetBlock);
+
 private:
 	UPROPERTY(EditAnywhere)
 	bool HasNorth;

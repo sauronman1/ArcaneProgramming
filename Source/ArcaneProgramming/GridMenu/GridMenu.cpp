@@ -11,7 +11,9 @@ void UGridMenu::NativeConstruct()
 	GameModeBase->GridMenu = this;
 	if(!MenuSet)
 	{
+		if(ChannelButton){ChannelButton->OnClicked.AddDynamic(this, &UGridMenu::UpdateNeigboursOnAllNodes);}
 		SetEmptySlots();
+		ShowManaCost();
 		MenuSet = true;
 	}
 	
@@ -158,4 +160,33 @@ void UGridMenu::UpdateNeigboursOnAllNodes()
 		if(SpellBlock != nullptr)
 			SpellBlock->UpdateNeighbours();
 	}
+
+	ShowManaCost();
 }
+
+void UGridMenu::ShowManaCost()
+{
+	ManaCost = 0;
+	
+	for(int i = 0; i<Slots.Num(); i++)
+	{
+		USpellBlock* SpellBlock = Cast<USpellBlock>(Slots[i]);
+		if(SpellBlock != nullptr)
+		{
+			ManaCost++;
+			ManaCost += FMath::RoundToInt(SpellBlock->SpellDuration/DurationToCostConversion);
+		}
+
+		UParameterBlock* ParameterBlock = Cast<UParameterBlock>(Slots[i]);
+		if(ParameterBlock != nullptr)
+		{
+			ManaCost += FMath::RoundToInt(ParameterBlock->Amplifier/AmplifierToCostConversion);
+		}
+	}
+
+	ManaPoolDisplay->SetText(FText::AsNumber(ManaPool));
+	ManaCostDisplay->SetText(FText::AsNumber(ManaCost));
+	
+}
+
+

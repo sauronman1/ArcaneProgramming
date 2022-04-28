@@ -31,19 +31,19 @@ void UVelocitySpellComponent::TickComponent(float DeltaTime, ELevelTick TickType
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	AddVelocity(DeltaTime);
+
 	Timer += DeltaTime;
-	if(Timer < SpellDuration)
+	if(Timer > SpellDuration)
 	{
-		AddVelocity(DeltaTime);
+		SetComponentTickEnabled(false);
 	}
-	else
-	{
-		
-	}
+	
 }
 
 void UVelocitySpellComponent::ActivateVelocity(FVector InDirection, const float Duration, float Amplifier,  VectorType VType)
 {
+	SetComponentTickEnabled(true);
 	Character = Cast<AMagePlayer>(GetOwner());
 	MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
 	SpellDuration = Duration;
