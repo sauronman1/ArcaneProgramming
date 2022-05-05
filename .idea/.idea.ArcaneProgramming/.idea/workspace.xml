@@ -7,26 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8bb4ba52-dcfd-4521-9829-d5c08aa2e6df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_LookAtTarget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_LookAtTarget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_GravitySpell.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_GravitySpell.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridMenu.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_SpellScrollMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_SpellScrollMenu.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/MainLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/MainLevel.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Textures/Parameters/ConvertToTargetBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Textures/Parameters/ConvertToTargetBlock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Textures/Parameters/ErrorConvertToTargetBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Textures/Parameters/ErrorConvertToTargetBlock.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/GravitySpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/GravitySpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,10 +82,10 @@
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreationSpell.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="266173OhuUHF0MGgpjEDYt2rzdN" />
@@ -381,7 +362,7 @@
       <workItem from="1650358409666" duration="25773000" />
       <workItem from="1650869584201" duration="34560000" />
       <workItem from="1651219801783" duration="5159000" />
-      <workItem from="1651476255040" duration="26887000" />
+      <workItem from="1651476255040" duration="27613000" />
     </task>
     <servers />
   </component>
