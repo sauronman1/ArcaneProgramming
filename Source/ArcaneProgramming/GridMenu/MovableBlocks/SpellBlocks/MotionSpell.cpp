@@ -7,7 +7,6 @@
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
-#include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h"
 #include "ArcaneProgramming/Player/MagePlayer.h"
 #include "ArcaneProgramming/Spells/MotionSpellComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -20,10 +19,6 @@ void UMotionSpell::NativeConstruct()
 		MenuSet = true;
 	}
 }
-
-
-
-
 
 void UMotionSpell::SetParameters(UParameterBlock* ParameterBlock, int Neighbour)
 {

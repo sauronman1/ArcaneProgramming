@@ -27,7 +27,7 @@ void UGravitySpellComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	}
 }
 
-void UGravitySpellComponent::RemoveTargetGravity(float Duration, bool RemoveGravity)
+void UGravitySpellComponent::RemoveTargetGravity(float Duration, bool EnableGravity)
 {
 	Character = Cast<AMagePlayer>(GetOwner());
 	MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
@@ -38,7 +38,7 @@ void UGravitySpellComponent::RemoveTargetGravity(float Duration, bool RemoveGrav
 	{
 		LastGravityState = MeshComponent->IsGravityEnabled();
 
-		if(RemoveGravity)
+		if(!EnableGravity)
 			MeshComponent->SetEnableGravity(false);
 		else
 			MeshComponent->SetEnableGravity(true);			
@@ -47,7 +47,7 @@ void UGravitySpellComponent::RemoveTargetGravity(float Duration, bool RemoveGrav
 	{
 		LastGravityScale = Character->GetCharacterMovement()->GravityScale;
 
-		if(RemoveGravity)
+		if(!EnableGravity)
 			Character->GetCharacterMovement()->GravityScale = 0;
 		else
 			Character->GetCharacterMovement()->GravityScale = 1;			

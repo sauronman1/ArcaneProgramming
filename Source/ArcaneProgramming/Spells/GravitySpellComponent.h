@@ -17,7 +17,7 @@ public:
 	UGravitySpellComponent();
 	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	void RemoveTargetGravity(float Duration, bool RemoveGravity);
+	void RemoveTargetGravity(float Duration, bool EnableGravity);
 	void ReturnTargetGravity();
 private:
 	UPROPERTY()

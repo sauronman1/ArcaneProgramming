@@ -7,42 +7,26 @@
   <component name="ChangeListManager">
     <list default="true" id="8bb4ba52-dcfd-4521-9829-d5c08aa2e6df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ArcaneProgramming/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_KeyPillar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_KeyPillar.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/BP_HUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/BP_HUD.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_ConvertSpellToTarget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_ConvertSpellToTarget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_CreationSpellBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_CreationSpellBlock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_FireSpellBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_FireSpellBlock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_MotionSpellBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_MotionSpellBlock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_VelocitySpellBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_VelocitySpellBlock.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_LookAtTarget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/ParameterBlocks/W_LookAtTarget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_GravitySpell.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/MovableBlocks/SpellBlocks/W_GravitySpell.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_GridMenu.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_HUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_HUD.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/W_SpellScrollMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/W_SpellScrollMenu.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/MainLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/MainLevel.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Textures/39044769_1902482036479922_5532896360992342016_n.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Textures/GridBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Textures/GridBlock.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Textures/Parameters/ConvertToTargetBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Textures/Parameters/ConvertToTargetBlock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Textures/Parameters/LookAtTarget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Textures/Parameters/LookAtTarget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Textures/Parameters/PlayerTarget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Textures/Parameters/PlayerTarget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Textures/Parameters/ErrorConvertToTargetBlock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Textures/Parameters/ErrorConvertToTargetBlock.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ConvertSpellToTarget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ConvertSpellToTarget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ConvertSpellToTarget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ConvertSpellToTarget.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreationSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreationSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/GravitySpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/GravitySpell.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/VelocitySpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/VelocitySpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Player/MagePlayer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/VelocitySpellComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/VelocitySpellComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,13 +47,13 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/include/string" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ActorUpVector.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/CustomButton.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/LookAtTarget.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreateRockSpell.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreateRockSpell.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/CustomButton.h" />
@@ -89,13 +73,9 @@
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/CreationSpellComponent.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/CreationSpellComponent.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/VelocitySpell.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreationSpell.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/MotionSpellComponent.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ConvertSpellToTarget.h" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.h" />
@@ -108,15 +88,23 @@
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/MageHud.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/VelocitySpell.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/AntiGravitySpell.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreationSpell.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/FireSpell.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.cpp" />
-      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ConvertSpellToTarget.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/GravitySpell.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/GravitySpell.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/GravitySpellComponent.cpp" />
       <option value="$PROJECT_DIR$/Source/ArcaneProgramming/Spells/FireSpellComponent.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/SpellBlock.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.h" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/GridMenu.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/PipeBlock.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/MotionSpell.cpp" />
+      <option value="$PROJECT_DIR$/Source/ArcaneProgramming/GridMenu/MovableBlocks/SpellBlocks/CreationSpell.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="266173OhuUHF0MGgpjEDYt2rzdN" />
@@ -126,7 +114,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35647896" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3564464" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -391,7 +379,9 @@
       <workItem from="1650265316250" duration="8046000" />
       <workItem from="1650348734760" duration="732000" />
       <workItem from="1650358409666" duration="25773000" />
-      <workItem from="1650869584201" duration="33835000" />
+      <workItem from="1650869584201" duration="34560000" />
+      <workItem from="1651219801783" duration="5159000" />
+      <workItem from="1651476255040" duration="26887000" />
     </task>
     <servers />
   </component>

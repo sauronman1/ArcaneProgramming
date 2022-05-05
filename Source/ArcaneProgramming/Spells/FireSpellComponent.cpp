@@ -40,6 +40,7 @@ void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 		//TODO Add overlapcomponent and resize it depending on parameterblock size
 		IgnoreActors.Empty();
  		Particlesystem->DeactivateSystem();
+		//TODO if alternative not found use destroycomp and set var t null
 		SetComponentTickEnabled(false);
 
 	}
@@ -47,7 +48,6 @@ void UFireSpellComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 
 void UFireSpellComponent::IncinerateTarget(float Duration)
 {
-	//TODO Still burns indefinetily when overlapping same tartget by different flames
 	AMagePlayer* Character = Cast<AMagePlayer>(GetOwner());
 	UStaticMeshComponent* MeshComponent = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
 	FireDuration = Duration;
@@ -56,18 +56,26 @@ void UFireSpellComponent::IncinerateTarget(float Duration)
 	{
 		Timer = 0;
 		DamageTimer = 0;
-		Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, Character->GetRootComponent(),NAME_None,   Character->GetActorLocation());
-		Particlesystem->SetRelativeLocation(FVector(0,0,0));
+		if(Particlesystem == nullptr)
+		{
+			Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, Character->GetRootComponent(),NAME_None,   Character->GetActorLocation());
+			Particlesystem->SetRelativeLocation(FVector(0,0,0));
+		}
+		//TODO Destroy and recreate PS, will be replaced by Niagara in the future, change colour of manacost text when working, fix error colour and pipes update when removed
+		if(Particlesystem->IsActive() == false)
+			Particlesystem->Activate(true);
 		
 	}
 	if(MeshComponent != nullptr)
 	{
 		Timer = 0;
 		DamageTimer = 0;
-		Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, MeshComponent,NAME_None, MeshComponent->GetComponentLocation());
-		Particlesystem->SetRelativeLocation(FVector(0,0,0));
-		//TODO Reactivate partticles instead of creating a new one each time
 
+		if(Particlesystem == nullptr)
+		{
+			Particlesystem = UGameplayStatics::SpawnEmitterAttached(PSComponent->Template, MeshComponent,NAME_None, MeshComponent->GetComponentLocation());
+			Particlesystem->SetRelativeLocation(FVector(0,0,0));
+		}
 	}
 }
 
@@ -104,6 +112,8 @@ void UFireSpellComponent::HandleCollision()
 				}
 				else
 				{
+					Timer = 0;
+					DamageTimer = 0;
 					FireSpellComponent->SetComponentTickEnabled(true);	
 				}
 

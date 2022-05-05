@@ -5,7 +5,7 @@
 #include "Components/EditableText.h"
 #include "ArcaneProgramming/GridMenu/MovableBlocks/ParameterBlocks/ParameterBlock.h"
 #include "ArcaneProgramming/GridMenu/GridBlock.h"
-#include "ArcaneProgramming/Spells/AntiGravitySpellComponent.h"
+#include "ArcaneProgramming/Spells/GravitySpellComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 void UGravitySpell::NativeConstruct()
@@ -41,10 +41,10 @@ void UGravitySpell::ActivateSpell()
 		return;
 	}
 
-	UAntiGravitySpellComponent* GravitySpell = Target->FindComponentByClass<UAntiGravitySpellComponent>();
+	UGravitySpellComponent* GravitySpell = Target->FindComponentByClass<UGravitySpellComponent>();
 	if(GravitySpell == nullptr)
 	{
-		GravitySpell = NewObject<UAntiGravitySpellComponent>(Target, UAntiGravitySpellComponent::StaticClass());
+		GravitySpell = NewObject<UGravitySpellComponent>(Target, UGravitySpellComponent::StaticClass());
 		GravitySpell->RegisterComponent();
 	}
 	else

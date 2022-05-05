@@ -14,12 +14,12 @@ void UPipeBlock::NativeConstruct()
 		MenuSet = true;
 	}
 }
-
+//TODO Might still be buggy
 
 void UPipeBlock::UpdateNeighbours()
 {
 	Neighbours.SetNum(4);
-
+	
 	 if(HasEast)
 	 	Neighbours[0] = OccupiedSlot->Right;
 	 if(HasWest)
@@ -48,14 +48,12 @@ void UPipeBlock::UpdateNeighbours()
 			UParameterBlock* ParameterBlock = Cast<UParameterBlock>(*GridMenu->Slots.Find(Neighbour));
 			if(ParameterBlock != nullptr && Cast<UPipeBlock>(*GridMenu->Slots.Find(Neighbour)) == nullptr)
 			{
-				ParameterBlock->UpdateNeighbours();
 				SetTailForAll(ParameterBlock);
 			}
 				
 			USpellBlock* SpellBlock = Cast<USpellBlock>(*GridMenu->Slots.Find(Neighbour));
 			if(SpellBlock != nullptr)
 			{
-				SpellBlock->UpdateNeighbours();
 				SetHeadForAll(SpellBlock);
 			}
 
@@ -68,22 +66,28 @@ void UPipeBlock::UpdateNeighbours()
 
 void UPipeBlock::SetNextAndPrevious(UWidget* TargetBlock)
 {
-	if(PreviousNode == nullptr || PreviousNode == TargetBlock)
-	{
-		PreviousNode = TargetBlock;
+	UPipeBlock* PipeBlock = Cast<UPipeBlock>(TargetBlock);
 
-		UPipeBlock* PipeBlock = Cast<UPipeBlock>(TargetBlock);
-		if(PipeBlock != nullptr)
-			PipeBlock->NextNode = this;
-	}
-	else
+	if(PipeBlock == nullptr)
 	{
-		NextNode = TargetBlock;
-		
-		UPipeBlock* PipeBlock = Cast<UPipeBlock>(TargetBlock);
-		if(PipeBlock != nullptr)
-			PipeBlock->PreviousNode = this;
+		return;
 	}
+
+	if(PreviousNode == PipeBlock || NextNode == PipeBlock)
+	{
+		return;
+	}
+	
+	if(PreviousNode == nullptr && NextNode != TargetBlock && PipeBlock->PreviousNode != this)
+	{
+		PreviousNode = PipeBlock;
+		PipeBlock->NextNode = this;
+		PipeBlock->UpdateNeighbours();
+	}
+	// if(NextNode == nullptr && PreviousNode != TargetBlock  && PipeBlock->NextNode != this)
+	// {
+	// 	NextNode = PipeBlock;
+	// }
 }
 
 void UPipeBlock::SetHeadForAll(USpellBlock* TargetBlock)
@@ -105,36 +109,12 @@ void UPipeBlock::SetHeadForAll(USpellBlock* TargetBlock)
 		CurrentBlock = Cast<UPipeBlock>(CurrentBlock->NextNode);
 	}
 	
-	// UPipeBlock* CurrentBlock = nullptr;
-	// UPipeBlock* LastBlock = nullptr;
-	// if(Cast<UPipeBlock>(PreviousNode) != nullptr)
-	// 	CurrentBlock = Cast<UPipeBlock>(PreviousNode);
-	// else if(Cast<UPipeBlock>(NextNode) != nullptr)
-	// 	CurrentBlock = Cast<UPipeBlock>(NextNode);
-	//
-	// LastBlock = this;
-	// while (CurrentBlock != nullptr)
-	// {
-	// 	CurrentBlock->HeadNode = HeadNode;
-	// 	if(Cast<UPipeBlock>(CurrentBlock->PreviousNode) != LastBlock && Cast<UPipeBlock>(CurrentBlock->PreviousNode) != nullptr)
-	// 	{
-	// 		LastBlock = CurrentBlock;
-	// 		CurrentBlock = Cast<UPipeBlock>(CurrentBlock->PreviousNode);
-	// 	}
-	// 	else if(Cast<UPipeBlock>(CurrentBlock->NextNode) != LastBlock && Cast<UPipeBlock>(CurrentBlock->NextNode) != nullptr)
-	// 	{
-	// 		LastBlock = CurrentBlock;
-	// 		CurrentBlock = Cast<UPipeBlock>(CurrentBlock->NextNode);
-	// 	}
-	// 	else if((Cast<UPipeBlock>(CurrentBlock->NextNode) == LastBlock && Cast<UPipeBlock>(CurrentBlock->PreviousNode) == nullptr) || (Cast<UPipeBlock>(CurrentBlock->PreviousNode) == LastBlock && Cast<UPipeBlock>(CurrentBlock->NextNode) == nullptr))
-	// 		CurrentBlock = nullptr;
-	// }
+	
 	
 }
 
 void UPipeBlock::SetTailForAll(UParameterBlock* TargetBlock)
 {
-	TailNode = TargetBlock;
 
 	TailNode = TargetBlock;
 	UPipeBlock* CurrentBlock = nullptr;
@@ -153,30 +133,7 @@ void UPipeBlock::SetTailForAll(UParameterBlock* TargetBlock)
 		CurrentBlock = Cast<UPipeBlock>(CurrentBlock->NextNode);
 	}
 	
-	// UPipeBlock* CurrentBlock = nullptr;
-	// UPipeBlock* LastBlock = nullptr;
-	// if(Cast<UPipeBlock>(PreviousNode) != nullptr)
-	// 	CurrentBlock = Cast<UPipeBlock>(PreviousNode);
-	// else if(Cast<UPipeBlock>(NextNode) != nullptr)
-	// 	CurrentBlock = Cast<UPipeBlock>(NextNode);
-	//
-	// LastBlock = this;
-	// while (CurrentBlock != nullptr)
-	// {
-	// 	CurrentBlock->TailNode = TailNode;
-	// 	if(Cast<UPipeBlock>(CurrentBlock->PreviousNode) != LastBlock && Cast<UPipeBlock>(CurrentBlock->PreviousNode) != nullptr)
-	// 	{
-	// 		LastBlock = CurrentBlock;
-	// 		CurrentBlock = Cast<UPipeBlock>(CurrentBlock->PreviousNode);
-	// 	}
-	// 	else if(Cast<UPipeBlock>(CurrentBlock->NextNode) != LastBlock && Cast<UPipeBlock>(CurrentBlock->NextNode) != nullptr)
-	// 	{
-	// 		LastBlock = CurrentBlock;
-	// 		CurrentBlock = Cast<UPipeBlock>(CurrentBlock->NextNode);
-	// 	}
-	// 	else if((Cast<UPipeBlock>(CurrentBlock->NextNode) == LastBlock && Cast<UPipeBlock>(CurrentBlock->PreviousNode) == nullptr) || (Cast<UPipeBlock>(CurrentBlock->PreviousNode) == LastBlock && Cast<UPipeBlock>(CurrentBlock->NextNode) == nullptr))
-	// 		CurrentBlock = nullptr;
-	// }
+	
 }
 
 

@@ -8,9 +8,7 @@
 
 #include "MotionSpell.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class ARCANEPROGRAMMING_API UMotionSpell : public USpellBlock
 {

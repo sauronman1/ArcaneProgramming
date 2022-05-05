@@ -16,7 +16,6 @@ class UGridMenu;
 UCLASS(Abstract)
 class ARCANEPROGRAMMING_API USpellBlock : public UUserWidget
 {
-	//Todo Attempt to merge Parameter and Spell Blocks to Movable blocks
 
 	GENERATED_BODY()
 public:

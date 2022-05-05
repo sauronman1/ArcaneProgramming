@@ -48,5 +48,6 @@ public:
 
 	UFUNCTION()
 	void UpdateNeigboursOnAllNodes();
-
+	UFUNCTION()
+	void NullifyAllPipes();
 };

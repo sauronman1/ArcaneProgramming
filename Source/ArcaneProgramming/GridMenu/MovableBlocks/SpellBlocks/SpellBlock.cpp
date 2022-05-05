@@ -41,7 +41,12 @@ void USpellBlock::UpdateNeighbours()
 				for (auto PipeNeighbour : PipeBlock->Neighbours)
 				{
 					if(PipeNeighbour == SlotID)
+					{
+						PipeBlock->UpdateNeighbours();
+						VerifySpell(PipeBlock->TailNode);
 						SetParameters(PipeBlock->TailNode, Neighbour);
+						
+					}
 
 				}
 			}

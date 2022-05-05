@@ -16,9 +16,9 @@ class ARCANEPROGRAMMING_API UPipeBlock : public UParameterBlock
 
 public:
 	UPROPERTY()
-	UWidget* PreviousNode;
+	UPipeBlock* PreviousNode;
 	UPROPERTY()
-	UWidget* NextNode;
+	UPipeBlock* NextNode;
 	UPROPERTY()
 	USpellBlock* HeadNode;
 	UPROPERTY()

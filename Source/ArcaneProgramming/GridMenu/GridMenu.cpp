@@ -3,6 +3,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "GridBlock.h"
 #include "MovableBlocks/ParameterBlocks/ParameterBlock.h"
+#include "MovableBlocks/ParameterBlocks/PipeBlock.h"
 #include "MovableBlocks/SpellBlocks/SpellBlock.h"
 
 void UGridMenu::NativeConstruct()
@@ -150,10 +151,24 @@ void UGridMenu::SetSlotInArray(UUserWidget* InBlock, int SlotID, bool RemoveBloc
 
 void UGridMenu::UpdateNeigboursOnAllNodes()
 {
+	NullifyAllPipes();
+	
+	for(int i = 0; i<Slots.Num(); i++)
+	{
+		USpellBlock* SpellBlock = Cast<USpellBlock>(Slots[i]);
+		if(SpellBlock != nullptr)
+		{
+			SpellBlock->Target = nullptr;
+			SpellBlock->Amplifier = 0;
+			SpellBlock->IsPrimary = false;
+			SpellBlock->TargetFound = false;
+		}
+	}
 	for(int i = 0; i<Slots.Num(); i++)
 	{
 		UParameterBlock* ParameterBlock = Cast<UParameterBlock>(Slots[i]);
-		if(ParameterBlock != nullptr)
+		UPipeBlock* PipeBlock = Cast<UPipeBlock>(Slots[i]);
+		if(ParameterBlock != nullptr && PipeBlock == nullptr)
 			ParameterBlock->UpdateNeighbours();
 
 		USpellBlock* SpellBlock = Cast<USpellBlock>(Slots[i]);
@@ -186,7 +201,30 @@ void UGridMenu::ShowManaCost()
 
 	ManaPoolDisplay->SetText(FText::AsNumber(ManaPool));
 	ManaCostDisplay->SetText(FText::AsNumber(ManaCost));
+
+	if(ManaCost > ManaPool)
+		ManaCostDisplay->SetColorAndOpacity(FLinearColor::Red);
+	else
+		ManaCostDisplay->SetColorAndOpacity(FLinearColor::Green);
+		
+	
 	
 }
 
+void UGridMenu::NullifyAllPipes()
+{
+	for(int i = 0; i<Slots.Num(); i++)
+	{
+		UPipeBlock* PipeBlock = Cast<UPipeBlock>(Slots[i]);
+		if(PipeBlock != nullptr)
+		{
+			PipeBlock->TailNode = nullptr;
+			PipeBlock->HeadNode = nullptr;
+			PipeBlock->NextNode = nullptr;
+			PipeBlock->PreviousNode = nullptr;
+		}
+
+		
+	}
+}
 
