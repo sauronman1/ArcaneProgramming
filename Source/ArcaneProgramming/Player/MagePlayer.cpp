@@ -113,8 +113,12 @@ void AMagePlayer::Menu()
 void AMagePlayer::ActivateSpell()
 {
 	GridMenu = Cast<AArcaneGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()))->GridMenu;
+	if (GridMenu == nullptr)
+	{
+		return;
+	}
 	
-	if(GridMenu->ManaCost > GridMenu->ManaPool)
+	if (GridMenu->ManaCost > GridMenu->ManaPool)
 	{
 		return;
 	}
